@@ -13,6 +13,25 @@ public class ProjectTest {
     /*
     Method Tests
     */
+
+    @Test
+    public void testCalculateNutrition()
+    {
+
+    }
+
+    @Test 
+    public void testOrder()
+    {
+
+    }
+
+    @Test
+    public void testAddToOrder()
+    {
+
+    }
+
     /*
     Throw Tests
     */
