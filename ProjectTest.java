@@ -7,6 +7,7 @@ import org.junit.Assert;
 import static org.junit.Assert.*;
 
 public class ProjectTest {
+    
     /*
     Constructor Tests
     */
@@ -20,4 +21,16 @@ public class ProjectTest {
     Enumeration Method Tests
     */
 
+    //Exceptions
+    /*InsufficientInventoryException
+    FileNotFoundException
+    IllegalArgumentException
+    */
+    //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
+    // or not a number 
+
+    @Test
+    public void TestInvalidRequestIO(){
+        
+    }
 }
