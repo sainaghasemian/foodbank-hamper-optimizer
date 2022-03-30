@@ -40,12 +40,42 @@ public class ProjectTest {
     /*
     Method Tests
     */
+
+    @Test
+    public void testCalculateNutrition()
+    {
+
+    }
+
+    @Test 
+    public void testOrder()
+    {
+
+    }
+
+    @Test
+    public void testAddToOrder()
+    {
+
+    }
+
     /*
     Throw Tests
     */
     /*
     Enumeration Method Tests
     */
-    
-    //testing push
+
+    //Exceptions
+    /*InsufficientInventoryException
+    FileNotFoundException
+    IllegalArgumentException
+    */
+    //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
+    // or not a number 
+
+    @Test
+    public void TestInvalidRequestIO(){
+        
+    }
 }
