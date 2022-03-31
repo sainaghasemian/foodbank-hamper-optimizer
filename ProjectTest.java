@@ -17,17 +17,22 @@ public class ProjectTest {
     }
 
     @Test
-    public void testSetAndGetFood() 
+    public void testSetFood() 
     {
         Food[] expectedFood = new Food[1];
         Nutrition nutrition = new Nutrition(5, 10, 23, 7, 8);
-        expectedFood[0] = new Food("10", "Apple", nutrition);
+        food[0] = new Food("10", "Apple", nutrition);
 
         Hamper hamper = new Hamper(null, null);
 
         hamper.setFood(expectedFood);
         foundFood = hamper.getFood();
-        assertEquals("Value of food did not match the expected result: ", expectedFood, foundFood);
+        assertEquals("Method setFood did not return the expected result: ", expectedFood, foundFood);
+    }
+
+    @Test 
+    public void testGetFood() {
+       
     }
 
     @Test
@@ -78,8 +83,24 @@ public class ProjectTest {
 
     @Test
     public void TestInvalidRequestIO() {
-        
+        String input = "abc";
+        boolean exceptionThrown = false;
+        try {
+            readRequestInput(input);
+        }
+        catch (IllegalArgumentException e) {
+            exceptionThrown = true;
+        }
+        assertTrue("Rachel Writes Message", exceptionThrown);
     }
+
+
+    @Test
+    public void TestClientIllegalArgument() {
+
+    }
+
+
 
 
     /*
