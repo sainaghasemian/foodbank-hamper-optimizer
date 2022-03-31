@@ -12,8 +12,12 @@ public class ProjectTest {
     //HAMPER TESTS
 
     @Test
-    public void testHamperConstructor() {
-
+    public void testHamperConstructor() 
+    {
+        Client[] clients = new Client[1];
+        //clients[0] = new Client(2, "ADULTFEMALE", )
+        Hamper hamper = new Hamper(null);
+        assertNotNull("Hamper constructor did not create an object when given a list of clients");
     }
 
     @Test
@@ -23,7 +27,7 @@ public class ProjectTest {
         Nutrition nutrition = new Nutrition(5, 10, 23, 7, 8);
         expectedFood[0] = new Food("10", "Apple", nutrition);
 
-        Hamper hamper = new Hamper(null, null);
+        Hamper hamper = new Hamper(null);
 
         hamper.setFood(expectedFood);
         foundFood = hamper.getFood();
@@ -31,7 +35,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void testGetClients() {
+    public void testSetAndGetClients() {
         
     }
 
