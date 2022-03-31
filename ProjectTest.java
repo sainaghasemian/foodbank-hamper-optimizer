@@ -95,7 +95,7 @@ public class ProjectTest {
         catch (IllegalArgumentException e) {
             exceptionThrown = true;
         }
-        assertTrue("Rachel Writes Message", exceptionThrown);
+        assertTrue("Rachel Writes Messages", exceptionThrown);
     }
 
 
