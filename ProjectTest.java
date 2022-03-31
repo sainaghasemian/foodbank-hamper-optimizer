@@ -71,23 +71,24 @@ public class ProjectTest {
 
     }
 
-    /*
-    Throw Tests
-    */
-    /*
-    Enumeration Method Tests
-    */
 
+    //Throw Tests
     //Exceptions
-    /*InsufficientInventoryException
-    FileNotFoundException
-    IllegalArgumentException
-    */
+    //InsufficientInventoryException
+    //FileNotFoundException
+    //IllegalArgumentException
+
     //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
     // or not a number 
 
     @Test
-    public void TestInvalidRequestIO(){
+    public void TestInvalidRequestIO() {
         
     }
+
+
+    /*
+    Enumeration Method Tests
+    */
+
 }
