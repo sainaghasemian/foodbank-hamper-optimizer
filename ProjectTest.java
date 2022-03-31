@@ -21,7 +21,7 @@ public class ProjectTest {
     {
         Food[] expectedFood = new Food[1];
         Nutrition nutrition = new Nutrition(5, 10, 23, 7, 8);
-        food[0] = new Food("10", "Apple", nutrition);
+        expectedFood[0] = new Food("10", "Apple", nutrition);
 
         Hamper hamper = new Hamper(null, null);
 
