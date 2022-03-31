@@ -17,7 +17,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void testSetFood() 
+    public void testSetAndGetFood() 
     {
         Food[] expectedFood = new Food[1];
         Nutrition nutrition = new Nutrition(5, 10, 23, 7, 8);
@@ -27,12 +27,7 @@ public class ProjectTest {
 
         hamper.setFood(expectedFood);
         foundFood = hamper.getFood();
-        assertEquals("Method setFood did not return the expected result: ", expectedFood, foundFood);
-    }
-
-    @Test 
-    public void testGetFood() {
-       
+        assertEquals("Value of food did not match the expected result: ", expectedFood, foundFood);
     }
 
     @Test
