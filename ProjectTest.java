@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
 
 public class ProjectTest {
 
+    //HAMPER TESTS
+
     @Test
     public void testHamperConstructor() {
 
@@ -29,17 +31,18 @@ public class ProjectTest {
         
     }
 
+    //CLIENT TESTS
+
+    @Test
+    public void testClientConstructor() {
+
+    }
+
     @Test 
     public void testGetNutrition() {
 
     }
     
-    /*
-    Constructor Tests
-    */
-    /*
-    Method Tests
-    */
 
     @Test
     public void testCalculateNutrition()
