@@ -21,7 +21,7 @@ public class ProjectTest {
 
     @Test
     public void testInvalidRequestIO() {
-        String input = "abc";
+        String[][] input = "abc";
         boolean exceptionThrown = false;
         try {
             RequestIO.createOrderFromInput(input); //method throwing exception not constructor 
@@ -46,15 +46,22 @@ public class ProjectTest {
     }
 
     @Test 
-    public void testSetAndGetOrder()
+    public void testSetAndGetOrder() //Ana just did this, needs review
     {
-        
+        String[][] input = "ana";
+        Order expectedOrder = new Order();
+        RequestIO.CreateOrderFromInput(input);
+        ArrayList<Hamper> hamperList = new ArrayList<Hamper>();
+        hamperList.setOrder();
+        foundOrder = order.getOrder();
+        assertEquals("The value of the order did not match the expected result ", expectedOrder, foundOrder);
     }
 
     @Test
-    public void testValidateClientInput()
+    public void testValidateClientInput() // Ana needs help with this
     {
-        // 
+        String clientType = "abc";
+
     }
 
     //ORDER TESTS
@@ -69,7 +76,6 @@ public class ProjectTest {
     @Test
     public void testAddToOrder()
     {
-        
         Client[] clients = new Client[1];
         clients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
@@ -253,38 +259,48 @@ public class ProjectTest {
     //DATABASE TESTS
     
     @Test
-    public void tesDefaulttDatabaseConstructor()
+    public void testDefaultDatabaseConstructor() //Ana just did this, needs review
     {
-        //not null.... similar to order:
-        Order order = new Order();
-        assertNotNull("The default Hamper constructor did not create an object when called with no arguments", order);
+        Database database = new Database();
+        assertNotNull("The default Database constructor did not create an object when called with no arguments", database);
     }
 
     @Test
-    public void tesDatabaseConstructor()
+    public void testDatabaseConstructor() //Ana just did this, needs review
     {
-        //not null.... similar to order:
-        Order order = new Order();
-        assertNotNull("The default Hamper constructor did not create an object when called with no arguments", order);
+        ArrayList<Client> clientList = new ArrayList<Client>();
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        Database database = new Database(clientList, foodList);
+        assertNotNull("The Database constructor did not create an object when called with client and food array lists", database);
     }
 
     @Test
-    public void testRemoveFoodByID()
+    public void testRemoveFoodByID() //Ana just did this, needs review
     {
-        //create araylist food, call removde food by ide, check to make sure if its been removed, how to check if an element exists in arrayList
-        //or loop through it
+        Database database = new Database();
+        String id = "1738";
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        database.removeFoodByID(id); //database.removeFoodByID or foodList.removeFoodByID ?
+        boolean check = foodList.contains(id); // let me know if you guys think we can just use .contains
+        assertTrue("The method removeFoodByID did not remove a given string id from the food list array, ", check); //would this be assertTrue ?
     }
 
     @Test
     public void testGetClientList()
     {
-        //mcreate arrayList, make a second constructor for testing purposes, set everhting to null, second that takes in arraylist of client 
+        Database database = new Database();
+        ArrayList<Client> expectedList = new ArrayList<Client>();
+        ArrayList<Client> actualList = database.getClientList();
+        assertEquals("The client list of the database did not match the expected result, ", expectedList, actualList);
     }
 
     @Test
     public void testGetFoodList()
     {
-        //similar to getclients list
+        Database database = new Database();
+        ArrayList<Food> expectedList = new ArrayList<Food>();
+        ArrayList<Food> actualList = database.getFoodList();
+        assertEquals("The food list of the database did not match the expected result, ", expectedList, actualList);
     }
 
     //INVENTORY
@@ -292,13 +308,16 @@ public class ProjectTest {
     @Test
     public void testFindHamperCombo()
     {
+        Inventory inventory = new Inventory();
+        ArrayList<Food> foodList = new ArrayList<Food>();
+
         //test if it throws insufficient inventory exception
     }
 
     @Test
     public void testCompleteOrderForm()
     {
-
+        ArrayList<Food> foodList = new ArrayList<Food>();
     }
 
     //CLIENTTYPES TESTS
