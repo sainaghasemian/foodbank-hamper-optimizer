@@ -17,7 +17,7 @@ public class ProjectTest {
         String input = "abc";
         boolean exceptionThrown = false;
         try {
-            createOrderFormInput(input); //method throwing exception not constructor 
+            RequestIO.createOrderFormInput(input); //method throwing exception not constructor 
         }
         catch (IllegalArgumentException e) {
             exceptionThrown = true;
@@ -55,31 +55,45 @@ public class ProjectTest {
     @Test
     public void testAddToOrder()
     {
-        Order order = new Order();
+        
         Client[] clients = new Client[1];
         clients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
-
-        assertNotNull("The ArrayList of Hampers is null after creating a new Order and adding a hamper to it", order.getHampers().get(0));
+        
+        assertNotNull("The ArrayList of Hampers is null after creating a new Order and adding a Hamper to it", order.getHampers().get(0));
     }
 
-    //Method calculateNutrition adds the nutrition requirements of each client in the hamper, creating a 
+    //Method calculateNutrition adds the nutrition requirements of each client in the hamper, for each hamper in the Order. It returns an array with one Nutrition object per Hamper in the array.
     @Test
     public void testCalculateNutrition()
     {
+        Order order = new Order();
         Client[] clients = new Client[2];
         clients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
         clients[1] = new Client(3, "ADULTMALE", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
+        order.addToOrder(hamper);
         Nutrition[] expectedNutrition = new Nutrition(4000, 25, 25, 25, 25);
-        Nutrition[] foundNutrition = Order.calculateNutrition(hamper);
+        Nutrition[] foundNutrition = order.calculateNutrition(hamper);
+
+        assertEquals("The value of the Nutrition array created by calculateNutrition did not match the expected result ", expectedNutrition, foundNutrition);
     }
 
     @Test 
     public void testGetHampers()
     {
+        Order order = new Order();
+        Client[] clients = new Client[2];
+        clients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
+        clients[1] = new Client(3, "ADULTMALE", 2000, 25, 25, 25, 25);
+        Hamper hamper = new Hamper(clients);
+        order.addToOrder(hamper);
+        ArrayList<Hamper> expectedHampers = new ArrayList<Hamper>();
+        expectedHampers.set(0, hamper);
+        ArrayList<Hamper> foundHampers = order.getHampers();
 
+        assertEquals("The value of the Hamper arrayList in order did not match the expected result ", expectedHampers, foundHampers);
     }
 
     //HAMPER TESTS
@@ -103,17 +117,18 @@ public class ProjectTest {
         Hamper hamper = new Hamper(null);
         hamper.setFood(expectedFood);
         foundFood = hamper.getFood();
-        assertEquals("The value of the Food array in Hamper did not match the expected result ", expectedFood, foundFood);
+        assertEquals("The value of the Food array in hamper did not match the expected result ", expectedFood, foundFood);
     }
 
     @Test
     public void testGetClients() 
     {
+        Order order = new Order();
         Client[] expectedClients = new Client[1];
         expectedClients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(expectedClients);
         foundClients = hamper.getClients()
-        assertEquals("The value of the Client array in Hamper did not match the expected result", expectedClients, foundClients);
+        assertEquals("The value of the Client array in hamper did not match the expected result", expectedClients, foundClients);
     }
 
     //CLIENT TESTS
