@@ -61,9 +61,24 @@ public class ProjectTest {
     }
 
     @Test
-    public void testValidateClientInput()
+    public void testValidateClientInputForIncorrectType()
     {
-        String clientType = "abc"; // Ana needs help with this, I'm really not sure how to do this but i can when i get back 
+        String clientType = "MALECHILDUNDER8";
+        int clientID = 5;
+        boolean expectedValidate = false;
+        boolean actualValidate = validateClientInput(clientType, clientID);
+        assertEquals("Validate method for client input failed to return false for an invalid input", expectedValidate, actualValidate);
+
+    }
+
+    @Test
+    public void testValidateClientInputForIncorrectID()
+    {
+        String clientType = "CHILDUNDER8";
+        int clientID = -5;
+        boolean expectedValidate = false;
+        boolean actualValidate = validateClientInput(clientType, clientID);
+        assertEquals("Validate method for client input failed to return false for an invalid input", expectedValidate, actualValidate);
 
     }
 
