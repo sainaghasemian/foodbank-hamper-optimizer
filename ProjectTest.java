@@ -227,7 +227,23 @@ public class ProjectTest {
     @Test
     public void testClientTypes()
     {
-
+        //ADULFEMALE
+        String expected = "Adult Female";
+        String actual = Directions.ADULTFEMALE.toString();
+        assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
+        //ADULTMALE
+        expected = "Adult Male";
+        actual = Directions.ADULTMALE.toString();
+        assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
+        //CHILDOVER8
+        expected = "Child Over 8";
+        actual = Directions.CHILDOVER8.toString();
+        assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
+        //CHILDUNDER8
+        expected = "Child Under 8";
+        actual = Directions.CHILDUNDER8.toString();
+        assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
     }
-
+    
+  
 }
