@@ -40,7 +40,33 @@ public class ProjectTest {
     @Test
     public void testValidateClientInput()
     {
-        
+
+    }
+
+    //ORDER TESTS
+
+    @Test
+    public void testOrderConstructor()
+    {
+
+    }
+
+    @Test
+    public void testAddToOrder()
+    {
+
+    }
+
+    @Test
+    public void testCalculateNutrition()
+    {
+
+    }
+
+    @Test 
+    public void testGetHampers()
+    {
+
     }
 
     //HAMPER TESTS
@@ -97,11 +123,120 @@ public class ProjectTest {
 
     }
 
+    //NUTRITION
+    
     @Test
-    public void testAddToOrder()
+    public void testNutritionConstructor()
     {
 
     }
+
+    @Test
+    public void testGetTotalCals()
+    {
+
+    }
+
+    @Test
+    public void testGetPercentGrains()
+    {
+
+    }
+
+    @Test
+    public void testGetPercentFV()
+    {
+
+    }
+
+    @Test
+    public void testGetPercentProtein()
+    {
+
+    }
+
+    @Test
+    public void testGetPercentOther()
+    {
+
+    }
+
+    //FOOD TESTS
+
+    @Test
+    public void testFoodConstructor()
+    {
+
+    }
+
+    @Test
+    public void testGetItemID()
+    {
+
+    }
+
+    @Test
+    public void testGetName()
+    {
+
+    }
+
+    @Test
+    public void testGetNutrition()
+    {
+
+    }
+
+
+    //DATABASE TESTS
+    
+    @Test
+    public void testDatabaseConstructor()
+    {
+
+    }
+
+    @Test
+    public void testRemoveFoodByID()
+    {
+
+    }
+
+    @Test
+    public void testGetClientList()
+    {
+
+    }
+
+    @Test
+    public void testGetFoodList()
+    {
+
+    }
+
+    //INVENTORY
+
+    @Test
+    public void testFindHamperCombo()
+    {
+
+    }
+
+    @Test
+    public void testCompleteOrderForm()
+    {
+
+    }
+
+
+    //CLIENTYPES TESTS
+
+    @Test
+    public void testClientTypes()
+    {
+
+    }
+
 
 
     //Throw Tests
@@ -113,21 +248,5 @@ public class ProjectTest {
     //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
     // or not a number 
 
-    
-
-
-    @Test
-    public void testClientIllegalArgument() {
-
-    }
-    
-    
-
-
-
-
-    /*
-    Enumeration Method Tests
-    */
 
 }
