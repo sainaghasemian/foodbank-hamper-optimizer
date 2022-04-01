@@ -125,9 +125,7 @@ public class ProjectTest {
     public void testSetAndGetFood() 
     {
         Food[] expectedFood = new Food[1];
-        Nutrition nutrition = new Nutrition(5, 10, 23, 7, 8);
-        expectedFood[0] = new Food("10", "Apple", nutrition);
-        expectedFood[0] = new Food("10", "Apple", nutrition);
+        expectedFood[0] = new Food("10", "Apple", 5, 10, 23, 7, 8);
         Hamper hamper = new Hamper(null);
         hamper.setFood(expectedFood);
         foundFood = hamper.getFood();
