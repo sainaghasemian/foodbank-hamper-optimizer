@@ -46,15 +46,15 @@ public class ProjectTest {
     }
 
     @Test 
-    public void testGetOrder()
+    public void testSetAndGetOrder()
     {
-        //leave for later need to figure out how the GUI will work 
+        
     }
 
     @Test
     public void testValidateClientInput()
     {
-        
+        // 
     }
 
     //ORDER TESTS
@@ -253,27 +253,38 @@ public class ProjectTest {
     //DATABASE TESTS
     
     @Test
-    public void testDatabaseConstructor()
+    public void tesDefaulttDatabaseConstructor()
     {
+        //not null.... similar to order:
+        Order order = new Order();
+        assertNotNull("The default Hamper constructor did not create an object when called with no arguments", order);
+    }
 
+    @Test
+    public void tesDatabaseConstructor()
+    {
+        //not null.... similar to order:
+        Order order = new Order();
+        assertNotNull("The default Hamper constructor did not create an object when called with no arguments", order);
     }
 
     @Test
     public void testRemoveFoodByID()
     {
-
+        //create araylist food, call removde food by ide, check to make sure if its been removed, how to check if an element exists in arrayList
+        //or loop through it
     }
 
     @Test
     public void testGetClientList()
     {
-
+        //mcreate arrayList, make a second constructor for testing purposes, set everhting to null, second that takes in arraylist of client 
     }
 
     @Test
     public void testGetFoodList()
     {
-
+        //similar to getclients list
     }
 
     //INVENTORY
