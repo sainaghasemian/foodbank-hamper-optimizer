@@ -1,3 +1,8 @@
+/**
+@author Saina Ghasemian-Roudsari, Rachel Dalton, Ana Perrone, Isaiah Lemiuex<a 
+@version 1.8
+@since   1.0
+*/
 package edu.ucalgary.ensf409;
 
 
