@@ -84,7 +84,7 @@ public class ProjectTest {
         String input = "abc";
         boolean exceptionThrown = false;
         try {
-            readRequestInput(input);
+            readRequestInput(input); //method throwing exception not constructor 
         }
         catch (IllegalArgumentException e) {
             exceptionThrown = true;
