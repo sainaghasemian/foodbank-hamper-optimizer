@@ -21,7 +21,8 @@ public class ProjectTest {
 
     @Test
     public void testInvalidRequestIO() {
-        String[][] input = "abc";
+        String[][] input = new String[1];
+        input[0][0] = "abc";
         boolean exceptionThrown = false;
         try {
             RequestIO.createOrderFromInput(input); //method throwing exception not constructor 
@@ -48,11 +49,11 @@ public class ProjectTest {
     @Test 
     public void testSetAndGetOrder() //Ana just did this, needs review
     {
-        String[][] input = "ana";
         Order expectedOrder = new Order();
-        RequestIO.CreateOrderFromInput(input);
         ArrayList<Hamper> hamperList = new ArrayList<Hamper>();
-        hamperList.setOrder();
+        //create food and client list so that we can create a hamper to add to out hamper arraylist
+        
+        hamperList.setOrder(hamperList);
         foundOrder = order.getOrder();
         assertEquals("The value of the order did not match the expected result ", expectedOrder, foundOrder);
     }
@@ -259,7 +260,7 @@ public class ProjectTest {
     //DATABASE TESTS
     
     @Test
-    public void testDefaultDatabaseConstructor() //Ana just did this, needs review
+    public void testDefaultDatabaseConstructor() 
     {
         Database database = new Database();
         assertNotNull("The default Database constructor did not create an object when called with no arguments", database);
@@ -280,7 +281,8 @@ public class ProjectTest {
         Database database = new Database();
         String id = "1738";
         ArrayList<Food> foodList = new ArrayList<Food>();
-        database.removeFoodByID(id); //database.removeFoodByID or foodList.removeFoodByID ?
+        //Create a food object with id 1738 and add to list so we can then remove it
+        database.removeFoodByID(id); 
         boolean check = foodList.contains(id); // let me know if you guys think we can just use .contains
         assertTrue("The method removeFoodByID did not remove a given string id from the food list array, ", check); //would this be assertTrue ?
     }
@@ -290,6 +292,7 @@ public class ProjectTest {
     {
         Database database = new Database();
         ArrayList<Client> expectedList = new ArrayList<Client>();
+        //Make a new client and add to array list
         ArrayList<Client> actualList = database.getClientList();
         assertEquals("The client list of the database did not match the expected result, ", expectedList, actualList);
     }
@@ -306,12 +309,18 @@ public class ProjectTest {
     //INVENTORY
 
     @Test
-    public void testFindHamperCombo()
+    public void testFindHamperComboException()
     {
         Inventory inventory = new Inventory();
         ArrayList<Food> foodList = new ArrayList<Food>();
 
         //test if it throws insufficient inventory exception
+    }
+
+    @Test
+    public void testFindHamperCombo()
+    {
+        //no idea... maybe check if it returns a valid arraylist of food?
     }
 
     @Test
