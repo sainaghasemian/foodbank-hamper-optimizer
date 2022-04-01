@@ -303,7 +303,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void testGetFoodList() //Ana not done
+    public void testGetFoodList() //Needs review
     {
         Database database = new Database();
         ArrayList<Food> expectedList = new ArrayList<Food>();
