@@ -10,7 +10,8 @@ import static org.junit.Assert.*;
 public class ProjectTest {
 
     //REQUESTIO TESTS
-
+    //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
+    // or not a number 
     @Test
     public void testInvalidRequestIO() {
         String input = "abc";
@@ -24,11 +25,10 @@ public class ProjectTest {
         assertTrue("An illegal argument exception was not thrown when invalid input was provided", exceptionThrown);
     }
 
-    //test for file not found exception
+    //Test for file not found exception
     @Test
-    public void testCreateRequestOutput()
-    {
-
+    public void testCreateRequestOutput() {
+        
     }
 
     @Test 
@@ -104,24 +104,8 @@ public class ProjectTest {
     }
 
 
-    //Throw Tests
-    //Exceptions
-    //InsufficientInventoryException
-    //FileNotFoundException
-    //IllegalArgumentException
-
-    //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
-    // or not a number 
-
     
 
-
-    @Test
-    public void testClientIllegalArgument() {
-
-    }
-    
-    
 
 
 
