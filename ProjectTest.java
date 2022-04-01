@@ -149,25 +149,16 @@ public class ProjectTest {
 
     @Test
     public void testClientConstructor() {
-
+        Client client = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
+        assertNotNull("Client constructor did not create a new object of type Client when given the appropriate arguments", client);
     }
 
     @Test 
-    public void testGetNutrition() {
-
-    }
-    
-
-    @Test
-    public void testCalculateNutrition()
-    {
-
-    }
-
-    @Test 
-    public void testOrder()
-    {
-
+    public void testGetNutritionClient() {
+        Client client = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
+        Nutrition expectedNutrition = new Nutrition(2000, 25, 25, 25, 25);
+        Nutrition actualNutrition = client.getNutrition();
+        assertEquals("The Nutrition object of Client did not match the expected result", expectedNutrition, actualNutrition);
     }
 
     //NUTRITION
@@ -175,37 +166,53 @@ public class ProjectTest {
     @Test
     public void testNutritionConstructor()
     {
-
+        Nutrition nutrition = new Nutrition(2000, 25, 25, 25, 25);
+        assertNotNull("Nutrition constructor did not create a new object of type Nutrition when given the appropriate arguments", nutrition);
     }
 
     @Test
     public void testGetTotalCals()
     {
-
+        Nutrition nutrition = new Nutrition(2000, 25, 25, 25, 25);
+        int expectedTotalCals = 2000;
+        int actualTotalCals = nutrition.getTotalCals();
+        assertEquals("The totalCals of Nutrition object did not match the expected result", expectedTotalCals, actualTotalCals);
     }
 
     @Test
     public void testGetPercentGrains()
     {
-
+        Nutrition nutrition = new Nutrition(2000, 40, 20, 20, 20);
+        int expectedPercentGrains = 40;
+        int actualPercentGrains = nutrition.getPercentGrains();
+        assertEquals("The percentGrains of Nutrition object did not match the expected result", expectedPercentGrains, actualPercentGrains);
     }
 
     @Test
     public void testGetPercentFV()
     {
-
+        Nutrition nutrition = new Nutrition(2000, 20, 40, 20, 20);
+        int expectedPercentFV = 40;
+        int actualPercentFV = nutrition.getPercentFV();
+        assertEquals("The percentFV of Nutrition object did not match the expected result", expectedPercentFV, actualPercentFV);
     }
 
     @Test
     public void testGetPercentProtein()
     {
-
+        Nutrition nutrition = new Nutrition(2000, 20, 20, 40, 20);
+        int expectedPercentProtein = 40;
+        int actualPercentProtein = nutrition.getPercentProtein();
+        assertEquals("The percentProtein of Nutrition object did not match the expected result", expectedPercentProtein, actualPercentProtein);
     }
 
     @Test
     public void testGetPercentOther()
     {
-
+        Nutrition nutrition = new Nutrition(2000, 20, 20, 20, 40);
+        int expectedPercentOther = 40;
+        int actualPercentOther = nutrition.getPercentOther();
+        assertEquals("The percentOther of Nutrition object did not match the expected result", expectedPercentOther, actualPercentOther);
     }
 
     //FOOD TESTS
@@ -213,25 +220,35 @@ public class ProjectTest {
     @Test
     public void testFoodConstructor()
     {
-
+        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        assertNotNull("Food constructor did not create a new object of type Food when given the appropriate arguments", food);
     }
 
     @Test
     public void testGetItemID()
     {
-
+        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        String expectedItemID = "10";
+        String actualItemID = food.getItemID();
+        assertEquals("The itemID of Food object did not match the expected result", expectedItemID, actualItemID);
     }
 
     @Test
     public void testGetName()
     {
-
+        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        String expectedName = "Apple";
+        String actualName = food.getName();
+        assertEquals("The name of Food object did not match the expected result", expectedName, actualName);
     }
 
     @Test
-    public void testGetNutrition()
+    public void testGetNutritionFood()
     {
-
+        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        String expectedNutrition = new Nutrition(5, 10, 23, 7, 8);
+        String actualNutrition = food.getNutrtition();
+        assertEquals("The nutrition of Food object did not match the expected result", expectedNutrition, actualNutrition);
     }
 
 
