@@ -28,7 +28,7 @@ public class ProjectTest {
     //Test for file not found exception
     @Test
     public void testCreateRequestOutput() {
-        
+
     }
 
     @Test 
@@ -235,17 +235,5 @@ public class ProjectTest {
     {
 
     }
-
-
-
-    //Throw Tests
-    //Exceptions
-    //InsufficientInventoryException
-    //FileNotFoundException
-    //IllegalArgumentException
-
-    //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
-    // or not a number 
-
 
 }
