@@ -269,7 +269,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void testDatabaseConstructor() //Ana just did this, needs review
+    public void testDatabaseConstructor() //Checked this seems good
     {
         ArrayList<Client> clientList = new ArrayList<Client>();
         ArrayList<Food> foodList = new ArrayList<Food>();
@@ -278,27 +278,27 @@ public class ProjectTest {
     }
 
     @Test
-    public void testRemoveFoodByID() //Ana just did this, needs review
+    public void testRemoveFoodByID() //Needs review
     {
         Database database = new Database();
         String id = "1738";
         ArrayList<Food> foodList = new ArrayList<Food>();
         //Create a food object with id 1738 and add to list so we can then remove it
         Food food = new Food("1738",  "Apple", 5, 10, 23, 7, 8);
-        //All that there's left to do here is add this food object to foodList
-        //cause this will remove it:
+        foodList.add(food); //Check if food object is added to foodList correct
         database.removeFoodByID(id); 
         boolean check = foodList.contains(id); // let me know if you guys think we can just use .contains
         assertTrue("The method removeFoodByID did not remove a given string id from the food list array, ", check); //would this be assertTrue ?
     }
 
     @Test
-    public void testGetClientList() //Ana not done
+    public void testGetClientList() //Needs review
     {
         Database database = new Database();
         ArrayList<Client> expectedList = new ArrayList<Client>();
         //Make a new client and add to array list
         ArrayList<Client> actualList = database.getClientList();
+        expectedList.add(actualList);
         assertEquals("The client list of the database did not match the expected result, ", expectedList, actualList);
     }
 
