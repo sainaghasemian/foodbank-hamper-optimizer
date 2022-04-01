@@ -9,6 +9,40 @@ import static org.junit.Assert.*;
 
 public class ProjectTest {
 
+    //REQUESTIO TESTS
+
+    @Test
+    public void testInvalidRequestIO() {
+        String input = "abc";
+        boolean exceptionThrown = false;
+        try {
+            createOrderFormInput(input); //method throwing exception not constructor 
+        }
+        catch (IllegalArgumentException e) {
+            exceptionThrown = true;
+        }
+        assertTrue("An illegal argument exception was not thrown when invalid input was provided", exceptionThrown);
+    }
+
+    //test for file not found exception
+    @Test
+    public void testCreateRequestOutput()
+    {
+
+    }
+
+    @Test 
+    public void testGetOrder()
+    {
+
+    }
+
+    @Test
+    public void testValidateClientInput()
+    {
+        
+    }
+
     //HAMPER TESTS
 
     @Test
@@ -79,24 +113,15 @@ public class ProjectTest {
     //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
     // or not a number 
 
-    @Test
-    public void TestInvalidRequestIO() {
-        String input = "abc";
-        boolean exceptionThrown = false;
-        try {
-            createOrderFormInput(input); //method throwing exception not constructor 
-        }
-        catch (IllegalArgumentException e) {
-            exceptionThrown = true;
-        }
-        assertTrue("Rachel Writes Messages", exceptionThrown);
-    }
+    
 
 
     @Test
-    public void TestClientIllegalArgument() {
+    public void testClientIllegalArgument() {
 
     }
+    
+    
 
 
 
