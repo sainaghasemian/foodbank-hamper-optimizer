@@ -2,6 +2,7 @@ package edu.ucalgary.ensf409;
 
 
 import java.beans.Transient;
+import java.io.FileNotFoundException;
 import java.util.regex.*;
 import org.junit.Test;
 import org.junit.Assert;
@@ -12,12 +13,13 @@ public class ProjectTest {
     //REQUESTIO TESTS
     //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
     // or not a number 
+
     @Test
     public void testInvalidRequestIO() {
         String input = "abc";
         boolean exceptionThrown = false;
         try {
-            createOrderFormInput(input); //method throwing exception not constructor 
+            createOrderFromInput(input); //method throwing exception not constructor 
         }
         catch (IllegalArgumentException e) {
             exceptionThrown = true;
@@ -28,19 +30,26 @@ public class ProjectTest {
     //Test for file not found exception
     @Test
     public void testCreateRequestOutput() {
-        
+        boolean exceptionThrown = false;
+        try {
+            RequestIO.createRequestOutput();
+        }
+        catch (FileNotFoundException e) {
+            exceptionThrown = true;
+        }
+        assertTrue("A File not found exception was not thrown when createRequestOutput was called", exceptionThrown);
     }
 
     @Test 
     public void testGetOrder()
     {
-
+        //leave for later need to figure out how the GUI will work 
     }
 
     @Test
     public void testValidateClientInput()
     {
-
+        
     }
 
     //ORDER TESTS
@@ -112,7 +121,7 @@ public class ProjectTest {
         Client[] expectedClients = new Client[1];
         expectedClients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(expectedClients);
-        foundClients = hamper.getClients()
+        foundClients = hamper.getClients();
         assertEquals("The value of the Client array in Hamper did not match the expected result", expectedClients, foundClients);
     }
 
@@ -237,7 +246,7 @@ public class ProjectTest {
     @Test
     public void testFindHamperCombo()
     {
-
+        //test if it throws insufficient inventory exception
     }
 
     @Test
