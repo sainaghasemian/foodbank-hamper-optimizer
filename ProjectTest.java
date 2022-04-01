@@ -283,6 +283,4 @@ public class ProjectTest {
         actual = Directions.CHILDUNDER8.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
     }
-
-
 }
