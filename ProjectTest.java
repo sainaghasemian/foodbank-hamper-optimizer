@@ -106,16 +106,10 @@ public class ProjectTest {
     }
 
     @Test 
-    public void testGetNutrition() {
+    public void testGetNutritionClient() {
 
     }
-    
 
-    @Test
-    public void testCalculateNutrition()
-    {
-
-    }
 
     @Test 
     public void testOrder()
@@ -182,7 +176,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void testGetNutrition()
+    public void testGetNutritionFood()
     {
 
     }
