@@ -5,7 +5,6 @@
 */
 package edu.ucalgary.ensf409;
 
-
 import java.beans.Transient;
 import java.io.FileNotFoundException;
 import java.util.regex.*;
@@ -47,8 +46,10 @@ public class ProjectTest {
         }
         assertTrue("A File not found exception was not thrown when createRequestOutput was called", exceptionThrown);
     }
+
     //testSetandGetOrder() tests the setOrder() method for a Hamper list by setting the order of the hamper list
     //then using getOrder() method to get the object's order field. Then compares this return to the expected return object.
+
     @Test 
     public void testSetAndGetOrder()
     {
@@ -63,7 +64,8 @@ public class ProjectTest {
     }
 
     //testValidateClientInputForIncorrectType() tests the validateClientInput() method, focusing on the client type string 
-    //it is provided with an invalid client type, to check whether or not it correctly returned the expected output of false    
+    //it is provided with an invalid client type, to check whether or not it correctly returned the expected output of false   
+
     @Test
     public void testValidateClientInputForIncorrectType()
     {
@@ -132,6 +134,9 @@ public class ProjectTest {
 
         assertEquals("The value of the Nutrition array created by calculateNutrition did not match the expected result ", expectedNutrition, foundNutrition);
     }
+
+    //testGetHampers() creates valid clients inside of a client array to be added to a hamper. These are then added to the order, and the method
+    //getHampers() is ultimately tested with the order object to verify that it correctly returned the array list of hampers
 
     @Test 
     public void testGetHampers()
@@ -328,7 +333,6 @@ public class ProjectTest {
         String actualNutrition = food.getNutrtition();
         assertEquals("The nutrition of Food object did not match the expected result", expectedNutrition, actualNutrition);
     }
-
 
     //DATABASE CLASS TESTS
 
