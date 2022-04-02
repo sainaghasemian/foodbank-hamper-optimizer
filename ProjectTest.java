@@ -17,8 +17,7 @@ public class ProjectTest {
 
     //REQUESTIO CLASS TESTS
 
-    //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
-    // or not a number 
+    //RequestIO takes from user input and throws IllegalArgumentException when the Strings given in the input do not match values in ClientTypes
 
     @Test
     public void testInvalidRequestIO() 
@@ -61,9 +60,10 @@ public class ProjectTest {
         Order foundOrder = order.getOrder();
         assertEquals("The value of the order did not match the expected result ", expectedOrder, foundOrder);
     }
-//testValidateClientInputForIncorrectType() tests the validateClientInput() method, focusing on the client type string 
-//it is provided with an invalid client type, to check whether or not it correctly returned the expected output of false    
-@Test
+
+    //testValidateClientInputForIncorrectType() tests the validateClientInput() method, focusing on the client type string 
+    //it is provided with an invalid client type, to check whether or not it correctly returned the expected output of false    
+    @Test
     public void testValidateClientInputForIncorrectType()
     {
         String clientType = "Male Child Under 8";
@@ -73,8 +73,9 @@ public class ProjectTest {
         assertEquals("Validate method for client input failed to return false for an invalid input", expectedValidate, actualValidate);
 
     }
-//testValidateClientInputForIncorrectType() once again tests the validateClientInput() method but this time testing the client ID int 
-//it is provided with an invalid client id, to check whether or not it correctly returned the expected output of false
+
+    //testValidateClientInputForIncorrectType() once again tests the validateClientInput() method but this time testing the client ID int 
+    //it is provided with an invalid client id, to check whether or not it correctly returned the expected output of false
 
     @Test
     public void testValidateClientInputForIncorrectID()
