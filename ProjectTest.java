@@ -36,7 +36,7 @@ public class ProjectTest {
     }
 
     //test for file not found exception
-    
+
     @Test
     public void testCreateRequestOutput() {
         boolean exceptionThrown = false;
@@ -333,6 +333,9 @@ public class ProjectTest {
 
 
     //DATABASE CLASS TESTS
+
+    //testDefaultDatabaseConstructor() tests the database constructor when it is not given any arguments, therefore it is simply checking
+    //if a non-null database object was created
     
     @Test
     public void testDefaultDatabaseConstructor() 
@@ -340,6 +343,9 @@ public class ProjectTest {
         Database database = new Database();
         assertNotNull("The default Database constructor did not create an object when called with no arguments", database);
     }
+
+    //testDatabaseConstructor() creates Array Lists of type food and client in order to once again test if the the database constructor creates an
+    //object when it is given these arguments
 
     @Test
     public void testDatabaseConstructor()
@@ -349,6 +355,10 @@ public class ProjectTest {
         Database database = new Database(clientList, foodList);
         assertNotNull("The Database constructor did not create an object when called with client and food array lists", database);
     }
+
+    //testRemoveFoodByID() first creates a string id and a food array list, to contain a food item with this given id, therefore this is added to the food list
+    //and the method removedFoodByID() is then called with the string id as its argument, the function .contains() then checks if the foodlist contains the id
+    //that should have been successfully removed
 
     @Test
     public void testRemoveFoodByID()
@@ -363,6 +373,9 @@ public class ProjectTest {
         assertTrue("The method removeFoodByID did not remove a given string id from the food list array", !check); 
     }
 
+    //tesGetClientList() tests the getClientList() method for a Databse object, by creating a client array list with a valid
+    //client object and calling the method to verify if it belongs to the database 
+
     @Test
     public void testGetClientList()
     {
@@ -373,6 +386,9 @@ public class ProjectTest {
         ArrayList<Client> actualList = database.getClientList();
         assertEquals("The client list of the database did not match the expected result, ", expectedList, actualList);
     }
+
+    //tesGetFoodList() tests the getFoodList() method for a Databse object, by creating a food array list with a valid
+    //food object and calling the method to verify if it belongs to the database
 
     @Test
     public void testGetFoodList() //Needs review
