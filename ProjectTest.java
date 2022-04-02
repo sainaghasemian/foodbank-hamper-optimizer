@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 public class ProjectTest {
 
-    //REQUESTIO TESTS
+    //REQUESTIO CLASS TESTS
     //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
     // or not a number 
 
@@ -82,7 +82,7 @@ public class ProjectTest {
 
     }
 
-    //ORDER TESTS
+    //ORDER CLASS TESTS
 
     @Test
     public void testOrderConstructor()
@@ -95,7 +95,7 @@ public class ProjectTest {
     public void testAddToOrder()
     {
         Client[] clients = new Client[1];
-        clients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         
@@ -110,8 +110,8 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
-        clients[1] = new Client(3, "Adult Male", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        clients[1] = new Client("3", "Adult Male", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         Nutrition[] expectedNutrition = new Nutrition(4000, 25, 25, 25, 25);
@@ -125,8 +125,8 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
-        clients[1] = new Client(3, "Adult Male", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        clients[1] = new Client("3", "Adult Male", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         ArrayList<Hamper> expectedHampers = new ArrayList<Hamper>();
@@ -136,16 +136,21 @@ public class ProjectTest {
         assertEquals("The value of the Hamper arrayList in order did not match the expected result ", expectedHampers, foundHampers);
     }
 
-    //HAMPER TESTS
+    //HAMPER CLASS TESTS
+
+    //testHamperConstructor() tests to see if the Hamper constructor creates a non-null object when given appropriate arguments.
 
     @Test
     public void testHamperConstructor() 
     {
         Client[] clients = new Client[1];
-        clients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         assertNotNull("Hamper constructor did not create an object when given a list of clients", hamper);
     }
+
+    //testSetandGetFood() tests the setFood() method for a Hamper object by setting the food field of the object,
+    //then using getFood() method to get the object's food field. Then compares this return to the expected return object.
 
     @Test
     public void testSetAndGetFood() 
@@ -154,38 +159,48 @@ public class ProjectTest {
         expectedFood[0] = new Food("10", "Apple", 5, 10, 23, 7, 8);
         Hamper hamper = new Hamper(null);
         hamper.setFood(expectedFood);
-        foundFood = hamper.getFood();
+        Food foundFood = hamper.getFood();
         assertEquals("The value of the Food array in hamper did not match the expected result ", expectedFood, foundFood);
     }
+
+    //testGetClients() tests the getClients() method for an Order object. Constructs an Order object using a Client object, 
+    //then gets the clients field getter. Then compares this return to the expected result.
 
     @Test
     public void testGetClients() 
     {
         Order order = new Order();
         Client[] expectedClients = new Client[1];
-        expectedClients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
+        expectedClients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(expectedClients);
-        foundClients = hamper.getClients();
+        Client[] foundClients = hamper.getClients();
         assertEquals("The value of the Client array in Hamper did not match the expected result", expectedClients, foundClients);
     }
 
-    //CLIENT TESTS
+    //CLIENT CLASS TESTS
+
+    //testClientConstructor() tests to see if the Client constructor creates a non-null object when given appropriate arguments.
 
     @Test
     public void testClientConstructor() {
-        Client client = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
+        Client client = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
         assertNotNull("Client constructor did not create a new object of type Client when given the appropriate arguments", client);
     }
 
+    //testGetNutritionClient() tests the getNutrition() method for a Client object. Constructs a Client object using appropriate
+    //arguments, then compares this against the expected Nutrition object.
+
     @Test 
     public void testGetNutritionClient() {
-        Client client = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
+        Client client = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
         Nutrition expectedNutrition = new Nutrition(2000, 25, 25, 25, 25);
         Nutrition actualNutrition = client.getNutrition();
         assertEquals("The Nutrition object of Client did not match the expected result", expectedNutrition, actualNutrition);
     }
 
-    //NUTRITION
+    //NUTRITION CLASS TESTS
+
+    //testNutritionConstructor() tests to see if Nutrition constructor creates a non-null object when given appropriate arguments.
     
     @Test
     public void testNutritionConstructor()
@@ -193,6 +208,9 @@ public class ProjectTest {
         Nutrition nutrition = new Nutrition(2000, 25, 25, 25, 25);
         assertNotNull("Nutrition constructor did not create a new object of type Nutrition when given the appropriate arguments", nutrition);
     }
+
+    //testGetTotalCals() tests the getTotalCals() method for a Nutrition object. Constructs a Nutrition object using appropriate arguments
+    //then uses the totalCals field getter, and compares this against the expected totalCals.
 
     @Test
     public void testGetTotalCals()
@@ -203,6 +221,9 @@ public class ProjectTest {
         assertEquals("The totalCals of Nutrition object did not match the expected result", expectedTotalCals, actualTotalCals);
     }
 
+    //testGetPercentGrains() tests the getPercentGrains() method for a Nutrition object. Constructs a Nutrition object using appropriate arguments
+    //then uses the percentGrains field getter, and compares this against the expected percentGrains.
+
     @Test
     public void testGetPercentGrains()
     {
@@ -211,6 +232,9 @@ public class ProjectTest {
         int actualPercentGrains = nutrition.getPercentGrains();
         assertEquals("The percentGrains of Nutrition object did not match the expected result", expectedPercentGrains, actualPercentGrains);
     }
+
+    //testGetPercentFV() tests the getpercentFV() method for a Nutrition object. Constructs a Nutrition object using appropriate arguments
+    //then uses the percentFV field getter, and compares this against the expected percentFV.
 
     @Test
     public void testGetPercentFV()
@@ -221,6 +245,9 @@ public class ProjectTest {
         assertEquals("The percentFV of Nutrition object did not match the expected result", expectedPercentFV, actualPercentFV);
     }
 
+    //testGetPercentProtein() tests the getpercentProtein() method for a Nutrition object. Constructs a Nutrition object using appropriate arguments
+    //then uses the percentProtein field getter, and compares this against the expected percentProtein.
+
     @Test
     public void testGetPercentProtein()
     {
@@ -229,6 +256,9 @@ public class ProjectTest {
         int actualPercentProtein = nutrition.getPercentProtein();
         assertEquals("The percentProtein of Nutrition object did not match the expected result", expectedPercentProtein, actualPercentProtein);
     }
+
+    //testGetPercentOther() tests the getpercentOther() method for a Nutrition object. Constructs a Nutrition object using appropriate arguments
+    //then uses the percentOther field getter, and compares this against the expected percentOther.
 
     @Test
     public void testGetPercentOther()
@@ -239,7 +269,9 @@ public class ProjectTest {
         assertEquals("The percentOther of Nutrition object did not match the expected result", expectedPercentOther, actualPercentOther);
     }
 
-    //FOOD TESTS
+    //FOOD CLASS TESTS
+
+    //testFoodConstructor() tests to see if Food constructor creates a non-null object when given the appropriate arguments.
 
     @Test
     public void testFoodConstructor()
@@ -247,6 +279,9 @@ public class ProjectTest {
         Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
         assertNotNull("Food constructor did not create a new object of type Food when given the appropriate arguments", food);
     }
+
+    //testGetItemID() tests the getItemID() method for a Food object. Constructs a Food object using appropriate arguments,
+    //then uses the itemID field getter, and compares this against the expected itemID.
 
     @Test
     public void testGetItemID()
@@ -257,6 +292,9 @@ public class ProjectTest {
         assertEquals("The itemID of Food object did not match the expected result", expectedItemID, actualItemID);
     }
 
+    //testGetName() tests the getName() method for a Food object. Constructs a Food object using appropriate arguments,
+    //then uses the name field getter, and compares this against the expected name.
+
     @Test
     public void testGetName()
     {
@@ -265,6 +303,9 @@ public class ProjectTest {
         String actualName = food.getName();
         assertEquals("The name of Food object did not match the expected result", expectedName, actualName);
     }
+
+    //testGetNutrition() tests the getNutrition() method for a Food object. Constructs a Food object using appropriate arguments,
+    //then uses the nutrition field getter, and compares this against the expected nutrition.
 
     @Test
     public void testGetNutritionFood()
@@ -276,7 +317,7 @@ public class ProjectTest {
     }
 
 
-    //DATABASE TESTS
+    //DATABASE CLASS TESTS
     
     @Test
     public void testDefaultDatabaseConstructor() 
@@ -329,7 +370,7 @@ public class ProjectTest {
         assertEquals("The food list of the database did not match the expected result, ", expectedList, actualList);
     }
 
-    //INVENTORY
+    //INVENTORY CLASS TESTS
 
     //Test if method findHamperCombo throws an InsufficientInventoryException when there is not enough inventory
     //to complete an order. We initialize the foodList in Database to have only one food object with 100 calories. 
@@ -389,7 +430,7 @@ public class ProjectTest {
         ArrayList<Food> foodList = new ArrayList<Food>();
     }
 
-    //CLIENTTYPES TESTS
+    //CLIENTTYPES ENUMERATION TESTS
 
     @Test
     public void testClientTypes()
