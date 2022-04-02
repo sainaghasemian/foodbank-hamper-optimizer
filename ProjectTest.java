@@ -336,27 +336,26 @@ public class ProjectTest {
     }
 
     @Test
-    public void testRemoveFoodByID() //Needs review
+    public void testRemoveFoodByID()
     {
         Database database = new Database();
         String id = "1738";
         ArrayList<Food> foodList = new ArrayList<Food>();
-        //Create a food object with id 1738 and add to list so we can then remove it
         Food food = new Food("1738", "Apple", 5, 10, 23, 7, 8);
-        foodList.add(food); //Check if food object is added to foodList correct
+        foodList.add(food); 
         database.removeFoodByID(id); 
         boolean check = foodList.contains(id); 
         assertTrue("The method removeFoodByID did not remove a given string id from the food list array", !check); 
     }
 
     @Test
-    public void testGetClientList() //Needs review
+    public void testGetClientList()
     {
         Database database = new Database();
         ArrayList<Client> expectedList = new ArrayList<Client>();
-        //Make a new client and add to array list
+        Client client = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
+        expectedList.add(client);
         ArrayList<Client> actualList = database.getClientList();
-        expectedList.add(actualList);
         assertEquals("The client list of the database did not match the expected result, ", expectedList, actualList);
     }
 
@@ -365,6 +364,8 @@ public class ProjectTest {
     {
         Database database = new Database();
         ArrayList<Food> expectedList = new ArrayList<Food>();
+        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        expectedList.add(food);
         ArrayList<Food> actualList = database.getFoodList();
         assertEquals("The food list of the database did not match the expected result, ", expectedList, actualList);
     }
