@@ -85,6 +85,8 @@ public class ProjectTest {
 
     //ORDER CLASS TESTS
 
+    //testOrderConstructor() tests to see if the default Hamper constructor creates a non-null object when given appropriate arguments.
+
     @Test
     public void testOrderConstructor()
     {
@@ -92,6 +94,7 @@ public class ProjectTest {
         assertNotNull("The default Hamper constructor did not create an object when called with no arguments", order);
     }
 
+    
     @Test
     public void testAddToOrder()
     {
@@ -103,6 +106,7 @@ public class ProjectTest {
         assertNotNull("The ArrayList of Hampers is null after creating a new Order and adding a Hamper to it", order.getHampers().get(0));
     }
 
+    //testCalculateNutrition() tests to see if the value of array Nutrition matches the expected results.
     //Method calculateNutrition adds the nutrition requirements of each client in the hamper, for each hamper in the Order. 
     //It returns an array with one Nutrition object per Hamper in the array.
 
@@ -443,11 +447,13 @@ public class ProjectTest {
     }
 
     //CLIENTTYPES ENUMERATION TESTS
+    //Any ClientTypes can be expanded to its written form 
+    //for example (ADULTMALE -> Adult Male) using the toString method
 
     @Test
     public void testClientTypes()
     {
-         //ADULFEMALE
+         //Adult Female
         String expected = "Adult Female";
         String actual = ClientTypes.ADULFEMALE.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
