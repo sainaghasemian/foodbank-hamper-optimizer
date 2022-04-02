@@ -20,12 +20,13 @@ public class ProjectTest {
     // or not a number 
 
     @Test
-    public void testInvalidRequestIO() {
+    public void testInvalidRequestIO() 
+    {
         String[][] input = new String[1];
         input[0][0] = "abc";
         boolean exceptionThrown = false;
         try {
-            RequestIO.createOrderFromInput(input); //method throwing exception not constructor 
+            RequestIO.createOrderFromInput(input); 
         }
         catch (IllegalArgumentException e) {
             exceptionThrown = true;
@@ -51,19 +52,18 @@ public class ProjectTest {
     {
         Order expectedOrder = new Order();
         ArrayList<Hamper> hamperList = new ArrayList<Hamper>();
-        //create food and client list so that we can create a hamper to add to out hamper arraylist
         ArrayList<Client> clientList = new ArrayList<Client>();
-        ArrayList<Food> foodList = new ArrayList<Food>();
-        // saina now we just have to create hamper from the food and client list to add to the hamper list i'm pretty sure ?
+        Hamper hamper = new Hamper(clientList);
+        hamperList.add(hamper);
         hamperList.setOrder(hamperList);
-        foundOrder = order.getOrder();
+        Order foundOrder = order.getOrder();
         assertEquals("The value of the order did not match the expected result ", expectedOrder, foundOrder);
     }
 
     @Test
     public void testValidateClientInputForIncorrectType()
     {
-        String clientType = "MALECHILDUNDER8";
+        String clientType = "Male Child Under 8";
         int clientID = 5;
         boolean expectedValidate = false;
         boolean actualValidate = validateClientInput(clientType, clientID);
@@ -74,7 +74,7 @@ public class ProjectTest {
     @Test
     public void testValidateClientInputForIncorrectID()
     {
-        String clientType = "CHILDUNDER8";
+        String clientType = "Child under 8";
         int clientID = -5;
         boolean expectedValidate = false;
         boolean actualValidate = validateClientInput(clientType, clientID);
@@ -95,21 +95,23 @@ public class ProjectTest {
     public void testAddToOrder()
     {
         Client[] clients = new Client[1];
-        clients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
+        clients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         
         assertNotNull("The ArrayList of Hampers is null after creating a new Order and adding a Hamper to it", order.getHampers().get(0));
     }
 
-    //Method calculateNutrition adds the nutrition requirements of each client in the hamper, for each hamper in the Order. It returns an array with one Nutrition object per Hamper in the array.
+    //Method calculateNutrition adds the nutrition requirements of each client in the hamper, for each hamper in the Order. 
+    //It returns an array with one Nutrition object per Hamper in the array.
+
     @Test
     public void testCalculateNutrition()
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
-        clients[1] = new Client(3, "ADULTMALE", 2000, 25, 25, 25, 25);
+        clients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
+        clients[1] = new Client(3, "Adult Male", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         Nutrition[] expectedNutrition = new Nutrition(4000, 25, 25, 25, 25);
@@ -123,8 +125,8 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
-        clients[1] = new Client(3, "ADULTMALE", 2000, 25, 25, 25, 25);
+        clients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
+        clients[1] = new Client(3, "Adult Male", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         ArrayList<Hamper> expectedHampers = new ArrayList<Hamper>();
@@ -140,7 +142,7 @@ public class ProjectTest {
     public void testHamperConstructor() 
     {
         Client[] clients = new Client[1];
-        clients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
+        clients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         assertNotNull("Hamper constructor did not create an object when given a list of clients", hamper);
     }
@@ -161,7 +163,7 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] expectedClients = new Client[1];
-        expectedClients[0] = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
+        expectedClients[0] = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(expectedClients);
         foundClients = hamper.getClients();
         assertEquals("The value of the Client array in Hamper did not match the expected result", expectedClients, foundClients);
@@ -171,13 +173,13 @@ public class ProjectTest {
 
     @Test
     public void testClientConstructor() {
-        Client client = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
+        Client client = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
         assertNotNull("Client constructor did not create a new object of type Client when given the appropriate arguments", client);
     }
 
     @Test 
     public void testGetNutritionClient() {
-        Client client = new Client(2, "ADULTFEMALE", 2000, 25, 25, 25, 25);
+        Client client = new Client(2, "Adult Female", 2000, 25, 25, 25, 25);
         Nutrition expectedNutrition = new Nutrition(2000, 25, 25, 25, 25);
         Nutrition actualNutrition = client.getNutrition();
         assertEquals("The Nutrition object of Client did not match the expected result", expectedNutrition, actualNutrition);
@@ -284,7 +286,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void testDatabaseConstructor() //Checked this seems good
+    public void testDatabaseConstructor()
     {
         ArrayList<Client> clientList = new ArrayList<Client>();
         ArrayList<Food> foodList = new ArrayList<Food>();
@@ -299,11 +301,11 @@ public class ProjectTest {
         String id = "1738";
         ArrayList<Food> foodList = new ArrayList<Food>();
         //Create a food object with id 1738 and add to list so we can then remove it
-        Food food = new Food("1738",  "Apple", 5, 10, 23, 7, 8);
+        Food food = new Food("1738", "Apple", 5, 10, 23, 7, 8);
         foodList.add(food); //Check if food object is added to foodList correct
         database.removeFoodByID(id); 
-        boolean check = foodList.contains(id); // let me know if you guys think we can just use .contains
-        assertTrue("The method removeFoodByID did not remove a given string id from the food list array, ", check); //would this be assertTrue ?
+        boolean check = foodList.contains(id); 
+        assertTrue("The method removeFoodByID did not remove a given string id from the food list array", !check); 
     }
 
     @Test
@@ -356,19 +358,19 @@ public class ProjectTest {
     {
          //ADULFEMALE
         String expected = "Adult Female";
-        String actual = Directions.ADULTFEMALE.toString();
+        String actual = ClientTypes.ADULFEMALE.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
-        //ADULTMALE
+        //Adult Male
         expected = "Adult Male";
-        actual = Directions.ADULTMALE.toString();
+        actual = ClientTypes.ADULTMALE.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
-        //CHILDOVER8
+        //Child Over 8
         expected = "Child Over 8";
-        actual = Directions.CHILDOVER8.toString();
+        actual = ClientTypes.CHILDOVER8.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
-        //CHILDUNDER8
+        //Child under 8
         expected = "Child Under 8";
-        actual = Directions.CHILDUNDER8.toString();
+        actual = ClientTypes.CHILDUNDER8.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
     }
 }
