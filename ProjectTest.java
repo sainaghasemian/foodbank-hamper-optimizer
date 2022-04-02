@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
 public class ProjectTest {
 
     //REQUESTIO CLASS TESTS
+
     //RequestIO takes from user input and throws IllegalArgumentException when input is a letter, special character 
     // or not a number 
 
@@ -34,7 +35,8 @@ public class ProjectTest {
         assertTrue("An illegal argument exception was not thrown when invalid input was provided", exceptionThrown);
     }
 
-    //Test for file not found exception
+    //test for file not found exception
+    
     @Test
     public void testCreateRequestOutput() {
         boolean exceptionThrown = false;
@@ -46,6 +48,9 @@ public class ProjectTest {
         }
         assertTrue("A File not found exception was not thrown when createRequestOutput was called", exceptionThrown);
     }
+
+    //testSetandGetOrder() tests the setOrder() method for a Hamper list by setting the order of the hamper list
+    //then using getOrder() method to get the object's order field. Then compares this return to the expected return object.
 
     @Test 
     public void testSetAndGetOrder()
@@ -60,6 +65,9 @@ public class ProjectTest {
         assertEquals("The value of the order did not match the expected result ", expectedOrder, foundOrder);
     }
 
+    //testValidateClientInputForIncorrectType() tests the validateClientInput() method, focusing on the client type string 
+    //it is provided with an invalid client type, to check whether or not it correctly returned the expected output of false
+
     @Test
     public void testValidateClientInputForIncorrectType()
     {
@@ -70,6 +78,9 @@ public class ProjectTest {
         assertEquals("Validate method for client input failed to return false for an invalid input", expectedValidate, actualValidate);
 
     }
+
+    //testValidateClientInputForIncorrectType() once again tests the validateClientInput() method but this time testing the client ID int 
+    //it is provided with an invalid client id, to check whether or not it correctly returned the expected output of false
 
     @Test
     public void testValidateClientInputForIncorrectID()
