@@ -104,6 +104,8 @@ public class ProjectTest {
         assertNotNull("The default Hamper constructor did not create an object when called with no arguments", order);
     }
 
+    //testAddToOrder() will first create an array of clients, the client array will be put into the hamper
+    //this will test if the array list in hamper is not nullo when the client creates a new order
     
     @Test
     public void testAddToOrder()
