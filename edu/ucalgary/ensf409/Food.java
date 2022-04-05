@@ -7,6 +7,7 @@ class Food {
     private final String FOOD_NAME;
     private final Nutrition NUTRITION;
 
+    //Food constructor     
     public Food(String id, String name, int grain, int fv, int pro, int other, int cals) {
 
     }
