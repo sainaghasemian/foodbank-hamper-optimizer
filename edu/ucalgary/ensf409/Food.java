@@ -9,7 +9,9 @@ class Food {
 
     //Food constructor     
     public Food(String id, String name, int grain, int fv, int pro, int other, int cals) {
-
+        this.ITEM_ID = id;
+        this.FOOD_NAME = name;
+        this.NUTRITION = new Nutrition(cals, grain, fv, pro, other);
     }
 
     //Returns the food ItemID 
@@ -22,7 +24,7 @@ class Food {
         return this.FOOD_NAME;
     }
 
-    public String getNutrition() {
+    public Nutrition getNutrition() {
         return this.NUTRITION;
     }
 }
