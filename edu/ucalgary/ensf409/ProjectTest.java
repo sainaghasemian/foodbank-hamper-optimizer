@@ -3,6 +3,7 @@
 @version 1.8
 @since   1.0
 */
+/*
 package edu.ucalgary.ensf409;
 
 import java.beans.Transient;
@@ -520,3 +521,4 @@ public class ProjectTest {
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
     }
 }
+*/

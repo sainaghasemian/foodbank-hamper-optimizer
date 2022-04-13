@@ -22,12 +22,12 @@ class Order
     //the results in an array of type Nutrition
     public Nutrition[] calculateNutrition()
     {
-        Nutrition[] totalNutrition = new Nutrition[this.hampers.length];
+        Nutrition[] totalNutrition = new Nutrition[this.hampers.size()];
 
         int i = 0;
         for(Hamper hamper : this.hampers)
         {
-            float totalCals = 0;
+            int totalCals = 0;
             float grainsCals = 0;
             float fVCals = 0;
             float proteinCals = 0;
@@ -35,7 +35,7 @@ class Order
             
             for(Food food : hamper.getFood())
             {
-                int currentNutrition = food.getNutrition();
+                Nutrition currentNutrition = food.getNutrition();
                 int currentCals = currentNutrition.getTotalCals();
                 totalCals += currentCals;
                 grainsCals += currentCals * currentNutrition.getPercentGrains() * 0.01;
@@ -44,10 +44,10 @@ class Order
                 otherCals += currentCals * currentNutrition.getPercentOther() * 0.01;
             }
 
-            float percentGrains = grainsCals / totalCals;
-            float percentFV = fVCals / totalCals;
-            float percentProtein = proteinCals / totalCals;
-            float percentOther = otherCals / totalCals;
+            int percentGrains = (int)Math.ceil(grainsCals / totalCals);
+            int percentFV = (int)Math.ceil(fVCals / totalCals);
+            int percentProtein = (int)Math.ceil(proteinCals / totalCals);
+            int percentOther = (int)Math.ceil(otherCals / totalCals);
 
             totalNutrition[i] = new Nutrition(totalCals, percentGrains, percentFV, percentProtein, percentOther);
             i++;

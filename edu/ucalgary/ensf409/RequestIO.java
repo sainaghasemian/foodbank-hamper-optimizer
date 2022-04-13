@@ -150,11 +150,14 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
 
     
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         
         EventQueue.invokeLater(() -> {
             new RequestIO().setVisible(true);        
         });
+
+        Database database = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
     }
         
 }
