@@ -23,6 +23,7 @@ public class Client {
         return this.NUTRITION;
     }
 
+    //Returns type of string
     public String getType(){
         return this.TYPE;
     }

@@ -157,7 +157,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     }
 
     public void createRequestOutput(){
-
+        
     }
 
     public Order getOrder() {return this.order;}
