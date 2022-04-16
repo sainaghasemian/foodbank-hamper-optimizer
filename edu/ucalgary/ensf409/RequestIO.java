@@ -1,10 +1,4 @@
 package edu.ucalgary.ensf409;
-/*
-Copyright Ann Barcomb and Emily Marasco, 2021
-Licensed under GPL v3
-See LICENSE.txt for more information.
-*/
-
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -17,7 +11,8 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
     private Order order;
     private String clients;
-    private ArrayList<Food> orderForm;
+    private ArrayList<Food[]> orderForm;
+    private Database workingDB;
 
     private JLabel instructions;
     private JLabel clientsLabel;
@@ -66,20 +61,61 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         this.add(clientPanel, BorderLayout.CENTER);
         this.add(submitPanel, BorderLayout.SOUTH);
     }
+
+    public Client[] createClientList(StringTokenizer tokenizer){
+        ArrayList<Client> newClientList = new ArrayList<Client>();
+        int i;
+
+        while (tokenizer.hasMoreTokens()){
+            String token = tokenizer.nextToken();
+            if (token.equals(ClientTypes.ADULTFEMALE.toString())){
+                for (i = 0; i < workingDB.getClientList().size(); i++){
+                    if (workingDB.getClientList().get(i).getType().equals(ClientTypes.ADULTFEMALE.toString()));
+                        break;
+                }
+            }
+            else if (token.equals(ClientTypes.ADULTMALE.toString())){
+                for (i = 0; i < workingDB.getClientList().size(); i++){
+                    if (workingDB.getClientList().get(i).getType().equals(ClientTypes.ADULTMALE.toString()));
+                        break;
+                }
+            }
+            else if (token.equals(ClientTypes.CHILDOVER8.toString())){
+                for (i = 0; i < workingDB.getClientList().size(); i++){
+                    if (workingDB.getClientList().get(i).getType().equals(ClientTypes.CHILDOVER8.toString()));
+                        break;
+                }
+            }
+            else {
+                for (i = 0; i < workingDB.getClientList().size(); i++){
+                    if (workingDB.getClientList().get(i).getType().equals(ClientTypes.CHILDUNDER8.toString()));
+                        break;
+                }
+            }
+            newClientList.add(workingDB.getClientList().get(i));
+        }
+        
+        return (Client[]) newClientList.toArray();
+    }
     
     public void actionPerformed(ActionEvent event){
+
+        workingDB = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
 
         clients = clientsInput.getText();
         String printMessage = "";
 
         if(event.getSource().equals(addHamper)){
-            if (validateClientInput()){
+
+            StringTokenizer tokenizer = new StringTokenizer(clients, "\n");
+
+            if (validateClientInput(tokenizer)){
                 if (this.order == null){
-                    createOrderFromInput();
-                    //create client objects, then create hamper using clients, then addHamperToOrder()
+                    order = new Order();
+                    order.addToOrder(new Hamper(createClientList(tokenizer)));
                 }
                 else{
-                    //create client objects, then create hamper using clients, then addHamperToOrder()
+                    order.addToOrder(new Hamper(createClientList(tokenizer)));
 
                 }
                 JOptionPane.showMessageDialog(this, "New Hamper is:\n" + clients);
@@ -87,14 +123,9 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         }
         else if (event.getSource().equals(processOrder)){
             JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
-      /*      try{
-                orderForm = Inventory.findHamperCombo(order.calculateNutrition());
-                Inventory.completeOrderForm(orderForm);
-                createRequestOutput(orderForm);
-            } catch (InsufficientInventoryException e){
-                JOptionPane.showMessageDialog(this, "Order could not be processed due to insufficient inventory.");
-            }
-      */      this.order = null;
+            Inventory.findOrderCombo(workingDB.getFoodList(), order.calculateNutrition());
+            JOptionPane.showMessageDialog(this, "Made it here!");
+            this.order = null;
         }
     }
     
@@ -102,26 +133,17 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         clientsInput.setText("");     
     }
     
-    public void mouseEntered(MouseEvent event){
-        
-    }
+    public void mouseEntered(MouseEvent event){}
 
-    public void mouseExited(MouseEvent event){
-        
-    }
+    public void mouseExited(MouseEvent event){}
 
-    public void mousePressed(MouseEvent event){
-        
-    }
+    public void mousePressed(MouseEvent event){}
 
-    public void mouseReleased(MouseEvent event){
-        
-    }  
+    public void mouseReleased(MouseEvent event){}  
     
-    private boolean validateClientInput(){
+    private boolean validateClientInput(StringTokenizer tokenizer){
         boolean inputValid = true;
-        
-        StringTokenizer tokenizer = new StringTokenizer(clients, "\n");
+
         while (tokenizer.hasMoreTokens()){
             String token = tokenizer.nextToken();
             if (!token.equals(ClientTypes.ADULTFEMALE.toString()) && 
@@ -147,17 +169,11 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     }
 
     public Order getOrder() {return this.order;}
-
-
     
-    public static void main(String[] args) 
-    {
-        
+    public static void main(String[] args) { 
         EventQueue.invokeLater(() -> {
             new RequestIO().setVisible(true);        
         });
-
-        Database database = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
     }
         
 }

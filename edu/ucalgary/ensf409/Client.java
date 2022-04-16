@@ -1,6 +1,6 @@
 /**
 @author Saina Ghasemian-Roudsari, Rachel Dalton, Ana Perrone, Isaiah Lemieux<a 
-@version 1.8
+@version 1.9
 @since   1.0
 */
 package edu.ucalgary.ensf409;
@@ -21,6 +21,10 @@ public class Client {
     //Returns Nutrition object
     public Nutrition getNutrition() {
         return this.NUTRITION;
+    }
+
+    public String getType(){
+        return this.TYPE;
     }
 }
 
