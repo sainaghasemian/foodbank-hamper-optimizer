@@ -64,6 +64,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
     public Client[] createClientList(StringTokenizer tokenizer){
         ArrayList<Client> newClientList = new ArrayList<Client>();
+        Client[] newClientArray;
         int i;
 
         while (tokenizer.hasMoreTokens()){
@@ -94,8 +95,14 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
             }
             newClientList.add(workingDB.getClientList().get(i));
         }
+
+        newClientArray = new Client[newClientList.size()];
+
+        for (i = 0; i < newClientArray.length; i++){
+            newClientArray[i] = newClientList.get(i);
+        }
         
-        return (Client[]) newClientList.toArray();
+        return newClientArray;
     }
     
     public void actionPerformed(ActionEvent event){
