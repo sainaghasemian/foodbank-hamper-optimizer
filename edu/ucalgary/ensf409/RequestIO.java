@@ -33,7 +33,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         instructions = new JLabel("Please enter the list of clients that are part of a single hamper.");
         clientsLabel = new JLabel("List of clients:");
         
-        clientsInput = new JTextArea("e.g.\nAdult Female\nAdult Male\nChild Under 8", 5, 15); 
+        clientsInput = new JTextArea("e.g.\nAdult Female\nAdult Male\nChild under 8", 5, 15); 
         clientsInput.addMouseListener(this);
         
         addHamper = new JButton("Add Hamper To Order");
@@ -62,36 +62,18 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         this.add(submitPanel, BorderLayout.SOUTH);
     }
 
-    public Client[] createClientList(StringTokenizer tokenizer){
+    public Client[] createClientList(String clients){
         ArrayList<Client> newClientList = new ArrayList<Client>();
         Client[] newClientArray;
         int i;
 
+        StringTokenizer tokenizer = new StringTokenizer(clients, "\n");
+
         while (tokenizer.hasMoreTokens()){
             String token = tokenizer.nextToken();
-            if (token.equals(ClientTypes.ADULTFEMALE.toString())){
-                for (i = 0; i < workingDB.getClientList().size(); i++){
-                    if (workingDB.getClientList().get(i).getType().equals(ClientTypes.ADULTFEMALE.toString()));
-                        break;
-                }
-            }
-            else if (token.equals(ClientTypes.ADULTMALE.toString())){
-                for (i = 0; i < workingDB.getClientList().size(); i++){
-                    if (workingDB.getClientList().get(i).getType().equals(ClientTypes.ADULTMALE.toString()));
-                        break;
-                }
-            }
-            else if (token.equals(ClientTypes.CHILDOVER8.toString())){
-                for (i = 0; i < workingDB.getClientList().size(); i++){
-                    if (workingDB.getClientList().get(i).getType().equals(ClientTypes.CHILDOVER8.toString()));
-                        break;
-                }
-            }
-            else {
-                for (i = 0; i < workingDB.getClientList().size(); i++){
-                    if (workingDB.getClientList().get(i).getType().equals(ClientTypes.CHILDUNDER8.toString()));
-                        break;
-                }
+            i = 0;
+            while (!token.equals(workingDB.getClientList().get(i).getType())){
+                i++;
             }
             newClientList.add(workingDB.getClientList().get(i));
         }
@@ -106,32 +88,38 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     }
     
     public void actionPerformed(ActionEvent event){
-
         workingDB = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
 
         clients = clientsInput.getText();
         String printMessage = "";
+        int i = 1;
 
         if(event.getSource().equals(addHamper)){
 
-            StringTokenizer tokenizer = new StringTokenizer(clients, "\n");
-
-            if (validateClientInput(tokenizer)){
+            if (validateClientInput(clients)){
                 if (this.order == null){
                     order = new Order();
-                    order.addToOrder(new Hamper(createClientList(tokenizer)));
+                    order.addToOrder(new Hamper(createClientList(clients)));
                 }
                 else{
-                    order.addToOrder(new Hamper(createClientList(tokenizer)));
+                    order.addToOrder(new Hamper(createClientList(clients)));
 
                 }
                 JOptionPane.showMessageDialog(this, "New Hamper is:\n" + clients);
+                printMessage = printMessage + "Hamper " + i + ":\n" + clients + "\n";
             }
         }
         else if (event.getSource().equals(processOrder)){
             JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
-            Inventory.findOrderCombo(workingDB.getFoodList(), order.calculateNutrition());
-            JOptionPane.showMessageDialog(this, "Made it here!");
+            Nutrition[] nutritions = order.calculateNutrition();
+            for (int tmp = 0; tmp < nutritions.length; tmp++){
+                System.out.println(nutritions[tmp].getTotalCals());
+                System.out.println(nutritions[tmp].getPercentGrains());
+                System.out.println(nutritions[tmp].getPercentFV());
+                System.out.println(nutritions[tmp].getPercentProtein());
+                System.out.println(nutritions[tmp].getPercentOther());
+            }
+            //Inventory.findOrderCombo(workingDB.getFoodList(), order.calculateNutrition());
             this.order = null;
         }
     }
@@ -148,7 +136,8 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
     public void mouseReleased(MouseEvent event){}  
     
-    private boolean validateClientInput(StringTokenizer tokenizer){
+    private boolean validateClientInput(String clients){
+        StringTokenizer tokenizer = new StringTokenizer(clients, "\n");
         boolean inputValid = true;
 
         while (tokenizer.hasMoreTokens()){
@@ -159,16 +148,12 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
             !token.equals(ClientTypes.CHILDUNDER8.toString())){
                 inputValid = false;
                 JOptionPane.showMessageDialog(this, token + " is an invalid client type.");
-                JOptionPane.showMessageDialog(this, "The valid client types are 'Adult Female', 'Adult Male', 'Child Over 8', and 'Child Under 8'." +
-                "\nRefer to this example for the required input format:" + "\nAdult Female\nAdult Male\nChild Under 8");
+                JOptionPane.showMessageDialog(this, "The valid client types are 'Adult Female', 'Adult Male', 'Child over 8', and 'Child under 8'." +
+                "\nRefer to this example for the required input format:" + "\nAdult Female\nAdult Male\nChild under 8");
             }
         }
         
         return inputValid;
-    }
-
-    public void createOrderFromInput(){
-
     }
 
     public void createRequestOutput(){

@@ -28,26 +28,32 @@ class Order
         for(Hamper hamper : this.hampers)
         {
             int totalCals = 0;
-            float grainsCals = 0;
-            float fVCals = 0;
-            float proteinCals = 0;
-            float otherCals = 0;
+            double grainsCals = 0;
+            double fVCals = 0;
+            double proteinCals = 0;
+            double otherCals = 0;
             
-            for(Food food : hamper.getFood())
+            for(Client client : hamper.getClients())
             {
-                Nutrition currentNutrition = food.getNutrition();
-                int currentCals = currentNutrition.getTotalCals();
+                Nutrition currentNutrition = client.getNutrition();
+                double currentCals = currentNutrition.getTotalCals();
                 totalCals += currentCals;
                 grainsCals += currentCals * currentNutrition.getPercentGrains() * 0.01;
                 fVCals += currentCals * currentNutrition.getPercentFV() * 0.01;
                 proteinCals += currentCals * currentNutrition.getPercentProtein() * 0.01;
                 otherCals += currentCals * currentNutrition.getPercentOther() * 0.01;
             }
+            
+            grainsCals = Math.ceil(grainsCals);
+            fVCals = Math.ceil(fVCals);
+            proteinCals = Math.ceil(proteinCals);
+            otherCals = Math.ceil(otherCals);
+            totalCals = (int) (grainsCals + fVCals + proteinCals + otherCals);
 
-            int percentGrains = (int)Math.ceil(grainsCals / totalCals);
-            int percentFV = (int)Math.ceil(fVCals / totalCals);
-            int percentProtein = (int)Math.ceil(proteinCals / totalCals);
-            int percentOther = (int)Math.ceil(otherCals / totalCals);
+            double percentGrains = (grainsCals / totalCals * 100);
+            double percentFV = (fVCals / totalCals * 100);
+            double percentProtein = (proteinCals / totalCals * 100);
+            double percentOther = (otherCals / totalCals * 100);
 
             totalNutrition[i] = new Nutrition(totalCals, percentGrains, percentFV, percentProtein, percentOther);
             i++;

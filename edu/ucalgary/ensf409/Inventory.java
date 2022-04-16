@@ -4,21 +4,33 @@ import java.util.ArrayList;
  
 public class Inventory {
  
-    public static void findCombinations(Food[] currCombination, Food[] bestCombination, ArrayList<Food> workingFoodList, Nutrition nutrition, int start, int end, int index, int choose){
+    public static boolean findCombinations(Food[] currCombination, Food[] bestCombination, ArrayList<Food> workingFoodList, Nutrition nutrition, int start, int end, int index, int choose){
         if (index == choose){
             int currentExcess = calculateTotalExcess(currCombination, nutrition);
             int bestExcess = calculateTotalExcess(bestCombination, nutrition);
-            if (bestCombination == null || 
-                (currentExcess < 0 && bestExcess < 0 && currentExcess > bestExcess) || 
-                (currentExcess >= 0 && bestExcess > 0 && currentExcess < bestExcess)){
-                bestCombination = (Food[]) currCombination.clone();
+
+            System.out.println(currentExcess);
+
+            if (bestExcess == 0){
+                return true;
             }
-            return;
+
+            if ((currentExcess < 0 && bestExcess < 0 && currentExcess > bestExcess) || 
+                (currentExcess >= 0 && bestExcess > 0 && currentExcess < bestExcess)){
+                bestCombination = (Food[]) currCombination.clone(); 
+            }
+
+            if (bestExcess == 0){
+                return true;
+            }
+
+            return false ;
         }
         for (int i = start; i <= end && end - i + 1 >= choose - index; i++){
             currCombination[index] = workingFoodList.get(i);
             findCombinations(currCombination, bestCombination, workingFoodList, nutrition, i+1, end, index+1, choose);
         }
+        return false;
     }
  
     public static int calculateTotalExcess(Food[] foodList, Nutrition nutrition){
@@ -27,6 +39,12 @@ public class Inventory {
         int FVCals = (int) (nutrition.getPercentFV() * 0.01 * nutrition.getTotalCals() * -1);
         int proteinCals = (int) (nutrition.getPercentProtein() * 0.01 * nutrition.getTotalCals() * -1);
         int otherCals = (int) (nutrition.getPercentOther() * 0.01 * nutrition.getTotalCals() * -1);
+
+        try{
+            int a = foodList.length;
+        } catch (NullPointerException e){
+            return grainCals + FVCals + proteinCals + otherCals;
+        }
 
         for (int i = 0; i < foodList.length; i++){
 
@@ -67,10 +85,10 @@ public class Inventory {
             Food[] bestCombination = null;
             for (int choose = workingFoodList.size(); choose > 0; choose--){
                 Food[] currCombination = new Food[choose];
-                findCombinations(currCombination, bestCombination, workingFoodList, nutrition[i], 0, workingFoodList.size(), 0, choose);
+                findCombinations(currCombination, bestCombination, workingFoodList, nutrition[i], 0, workingFoodList.size() - 1, 0, choose);
             }
             bestCombinations.add(bestCombination);
-        }   
+        }  
         return bestCombinations;
     }
 }

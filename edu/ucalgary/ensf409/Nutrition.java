@@ -7,13 +7,13 @@ package edu.ucalgary.ensf409;
 
 public class Nutrition {
     private final int TOTAL_CALS;
-    private final int PERCENT_GRAINS;
-    private final int PERCENT_FV;
-    private final int PERCENT_PROTEIN;
-    private final int PERCENT_OTHER;
+    private final double PERCENT_GRAINS;
+    private final double PERCENT_FV;
+    private final double PERCENT_PROTEIN;
+    private final double PERCENT_OTHER;
 
     //Nutrition constructor
-    public Nutrition(int totalCals, int percentGrains, int percentFV, int percentProtein, int percentOther) {
+    public Nutrition(int totalCals, double percentGrains, double percentFV, double percentProtein, double percentOther) {
         this.TOTAL_CALS = totalCals;
         this.PERCENT_GRAINS = percentGrains;
         this.PERCENT_FV = percentFV;
@@ -21,28 +21,28 @@ public class Nutrition {
         this.PERCENT_OTHER = percentOther;
     }
 
-    //Returns the int representing total calories
-    public int getTotalCals() {
+    //Returns the double representing total calories
+    public double getTotalCals() {
         return this.TOTAL_CALS;
     }
 
-    //Returns the int representing percentage of grains
-    public int getPercentGrains() {
+    //Returns the double representing percentage of grains
+    public double getPercentGrains() {
         return this.PERCENT_GRAINS;
     }
 
-    //Returns the int representing percentage of fruits & veggies
-    public int getPercentFV() {
+    //Returns the double representing percentage of fruits & veggies
+    public double getPercentFV() {
         return this.PERCENT_FV;
     }
 
-    //Returns the int representing percentage of protein
-    public int getPercentProtein() {
+    //Returns the double representing percentage of protein
+    public double getPercentProtein() {
         return this.PERCENT_PROTEIN;
     }
 
-    //Returns the int representing percentage other
-    public int getPercentOther() {
+    //Returns the double representing percentage other
+    public double getPercentOther() {
         return this.PERCENT_OTHER;
     }
 }

@@ -20,13 +20,13 @@ public enum ClientTypes {
 
     CHILDOVER8 {
         public String toString() {
-            return "Child Over 8";
+            return "Child over 8";
         }
     },
 
     CHILDUNDER8 {
         public String toString() {
-            return "Child Under 8";
+            return "Child under 8";
         }
     };
     
