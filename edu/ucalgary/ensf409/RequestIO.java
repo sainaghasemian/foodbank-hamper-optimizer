@@ -1,3 +1,8 @@
+/**
+@author Saina Ghasemian-Roudsari, Rachel Dalton, Ana Perrone, Isaiah Lemieux<a 
+@version 1.9
+@since   1.0
+*/
 package edu.ucalgary.ensf409;
 
 import java.awt.BorderLayout;
@@ -10,9 +15,9 @@ import java.awt.FlowLayout;
 
 public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
-    private Order order;
+    private static Order order;
     private String clients;
-    private ArrayList<Food[]> orderForm;
+    private static ArrayList<Food[]> orderForm;
     private Database workingDB;
 
     private JLabel instructions;
@@ -20,6 +25,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     private JTextArea clientsInput;
     private JButton processOrder;
     private JButton addHamper;
+    private static Writer outputFile;
     
     public RequestIO(){
         super("Create a Hamper");
@@ -171,22 +177,25 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         return inputValid;
     }
 
-    public void createRequestOutput(String outputFile){
-        PrintWriter output = null;
-
-        try {
-            output = new PrintWriter(outputFile);
+    public static void createRequestOutput(ArrayList<Food[]> foodList) {
+        PrintWriter outputWrite = new PrintWriter(outputFile);
+        outputWrite.println("Hamper Order Form\n");
+        outputWrite.println("Name: \n");
+        outputWrite.println("Date: \n");
+        outputWrite.println("Original Request\n");
+        for(int i = 0; foodList !=null; i++) {
+            order.getHampers().get(i).getClients();
+            outputWrite.printf("Hamper:", foodList);
         }
-        catch(FileNotFoundException e) {
-            System.out.println (e.getMessage());
-        }
 
-        createClientList(getOrder(),output);
+        outputWrite.close();
+        
 
+        //order.getHampers();
+    
+        
     }
 
-    private void createClientList(Order order2, PrintWriter output) {
-    }
 
     public Order getOrder() {return this.order;}
     
@@ -194,6 +203,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         EventQueue.invokeLater(() -> {
             new RequestIO().setVisible(true);        
         });
+        createRequestOutput(orderForm);
     }
         
 }
