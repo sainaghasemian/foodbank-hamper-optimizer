@@ -92,8 +92,6 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         workingDB = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
 
         clients = clientsInput.getText();
-        String printMessage = "";
-        int i = 1;
 
         if(event.getSource().equals(addHamper)){
 
@@ -107,20 +105,22 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
                 }
                 JOptionPane.showMessageDialog(this, "New Hamper is:\n" + clients);
-                printMessage = printMessage + "Hamper " + i + ":\n" + clients + "\n";
             }
         }
         else if (event.getSource().equals(processOrder)){
-            JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
-            Nutrition[] nutritions = order.calculateNutrition();
-            for (int tmp = 0; tmp < nutritions.length; tmp++){
-                System.out.println(nutritions[tmp].getTotalCals());
-                System.out.println(nutritions[tmp].getPercentGrains());
-                System.out.println(nutritions[tmp].getPercentFV());
-                System.out.println(nutritions[tmp].getPercentProtein());
-                System.out.println(nutritions[tmp].getPercentOther());
+            String printMessage = "";
+            int j = 1;
+            for (Hamper hamper : order.getHampers()){
+                printMessage += "\nHamper " + j + ": " + "\n";
+                for (Client client : hamper.getClients()){
+                    printMessage += client.getType() + "\n";
+                }
+                j++;
             }
-            Inventory.findOrderCombo(workingDB.getFoodList(), order.calculateNutrition());
+            JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
+            //orderForm = Inventory.findOrderCombo(workingDB.getFoodList(), order.calculateNutrition());
+            //createRequestOutput("orderform.txt");
+            
             this.order = null;
         }
     }
