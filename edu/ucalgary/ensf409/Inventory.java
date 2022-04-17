@@ -112,10 +112,15 @@ public class Inventory {
             }
             bestCombinations.add(findBestCombination(combinations, nutrition[i]));
             if (calculateTotalShortage(bestCombinations.get(i), nutrition[i]) < 0){
-                //shortage detected
                 return bestCombinations;
             }
-            // remove everything in bestCombinations.get(i) fro workingFoodList
+            for (int j = 0; j < bestCombinations.get(i).length; j++){
+                int z = 0;
+                while (!bestCombinations.get(i)[j].getName().equals(workingFoodList.get(z).getName())){
+                    z++;
+                }
+                workingFoodList.remove(z);
+            }
         }  
         return bestCombinations;
     }

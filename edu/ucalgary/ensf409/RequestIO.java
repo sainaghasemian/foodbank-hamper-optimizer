@@ -125,7 +125,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
             JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
             Nutrition[] nutrition = order.calculateNutrition();
             orderForm = Inventory.findOrderCombo(workingDB.getFoodList(), nutrition);
-            createRequestOutput("orderform.txt");
+            //createRequestOutput("orderform.txt");
             printMessage = "";
             int grain = 0, FV = 0, protein = 0, other = 0;
             for (int i = 0; i < orderForm.size(); i++){
