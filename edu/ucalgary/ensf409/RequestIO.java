@@ -119,7 +119,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
                 System.out.println(nutritions[tmp].getPercentProtein());
                 System.out.println(nutritions[tmp].getPercentOther());
             }
-            //Inventory.findOrderCombo(workingDB.getFoodList(), order.calculateNutrition());
+            Inventory.findOrderCombo(workingDB.getFoodList(), order.calculateNutrition());
             this.order = null;
         }
     }
