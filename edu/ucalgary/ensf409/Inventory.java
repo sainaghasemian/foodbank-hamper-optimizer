@@ -105,7 +105,6 @@ public class Inventory {
     public static ArrayList<Food[]> findOrderCombo(ArrayList<Food> workingFoodList, Nutrition[] nutrition) {
         ArrayList<Food[]> bestCombinations = new ArrayList<Food[]>();
         for (int i = 0; i < nutrition.length; i++){
-            Food[] bestCombination = null;
             ArrayList<Food[]> combinations = new ArrayList<Food[]>();
             for (int choose = workingFoodList.size(); choose > 0; choose--){
                 Food[] currCombination = new Food[choose];
