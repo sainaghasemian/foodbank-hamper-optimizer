@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 import java.awt.FlowLayout;
+import java.io.File;  
 
 public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
@@ -25,7 +26,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     private JTextArea clientsInput;
     private JButton processOrder;
     private JButton addHamper;
-    private static Writer outputFile;
+    //private static Writer outputFile;
     
     public RequestIO(){
         super("Create a Hamper");
@@ -125,7 +126,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
             JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
             Nutrition[] nutrition = order.calculateNutrition();
             orderForm = Inventory.findOrderCombo(workingDB.getFoodList(), nutrition);
-            //createRequestOutput("orderform.txt");
+            createRequestOutput(orderForm, "orderform.txt");
             printMessage = "";
             int grain = 0, FV = 0, protein = 0, other = 0;
             for (int i = 0; i < orderForm.size(); i++){
@@ -177,23 +178,29 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         return inputValid;
     }
 
-    public static void createRequestOutput(ArrayList<Food[]> foodList) {
-        PrintWriter outputWrite = new PrintWriter(outputFile);
-        outputWrite.println("Hamper Order Form\n");
-        outputWrite.println("Name: \n");
-        outputWrite.println("Date: \n");
-        outputWrite.println("Original Request\n");
-        for(int i = 0; foodList !=null; i++) {
-            order.getHampers().get(i).getClients();
-            outputWrite.printf("Hamper:", foodList);
+    public static void createRequestOutput(ArrayList<Food[]> foodList, String outputFile) 
+    {
+        try
+        {
+            PrintWriter outputWrite = new PrintWriter(new File(outputFile));
+            outputWrite.println("Hamper Order Form\n");
+            outputWrite.println("Name: \n");
+            outputWrite.println("Date: \n");
+            outputWrite.println("Original Request\n");
+            for(int i = 0; foodList !=null; i++) {
+                //order.getHampers().get(i).getClients();
+                outputWrite.printf("Hamper:", foodList);
+            }
+
+            outputWrite.close();
+            
+
+            //order.getHampers();
         }
+        catch(FileNotFoundException e)
+        {
 
-        outputWrite.close();
-        
-
-        //order.getHampers();
-    
-        
+        }
     }
 
 
@@ -203,7 +210,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         EventQueue.invokeLater(() -> {
             new RequestIO().setVisible(true);        
         });
-        createRequestOutput(orderForm);
+        //createRequestOutput(orderForm);
     }
         
 }
