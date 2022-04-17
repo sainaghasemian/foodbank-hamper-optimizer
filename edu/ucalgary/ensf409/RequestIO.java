@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
+import java.io.*;
 import java.awt.FlowLayout;
 
 public class RequestIO extends JFrame implements ActionListener, MouseListener{
@@ -156,8 +157,21 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         return inputValid;
     }
 
-    public void createRequestOutput(){
+    public void createRequestOutput(String outputFile){
+        PrintWriter output = null;
 
+        try {
+            output = new PrintWriter(outputFile);
+        }
+        catch(FileNotFoundException e) {
+            System.out.println (e.getMessage());
+        }
+
+        createClientList(getOrder(),output);
+
+    }
+
+    private void createClientList(Order order2, PrintWriter output) {
     }
 
     public Order getOrder() {return this.order;}
