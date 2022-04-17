@@ -98,8 +98,6 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         workingDB = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
 
         clients = clientsInput.getText();
-        String printMessage = "";
-        int i = 1;
 
         if(event.getSource().equals(addHamper)){
 
@@ -113,20 +111,37 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
                 }
                 JOptionPane.showMessageDialog(this, "New Hamper is:\n" + clients);
-                printMessage = printMessage + "Hamper " + i + ":\n" + clients + "\n";
             }
         }
         else if (event.getSource().equals(processOrder)){
-            JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
-            Nutrition[] nutritions = order.calculateNutrition();
-            for (int tmp = 0; tmp < nutritions.length; tmp++){
-                System.out.println(nutritions[tmp].getTotalCals());
-                System.out.println(nutritions[tmp].getPercentGrains());
-                System.out.println(nutritions[tmp].getPercentFV());
-                System.out.println(nutritions[tmp].getPercentProtein());
-                System.out.println(nutritions[tmp].getPercentOther());
+            String printMessage = "";
+            int j = 1;
+            for (Hamper hamper : order.getHampers()){
+                printMessage += "\nHamper " + j + ": " + "\n";
+                for (Client client : hamper.getClients()){
+                    printMessage += client.getType() + "\n";
+                }
+                j++;
             }
-            Inventory.findOrderCombo(workingDB.getFoodList(), order.calculateNutrition());
+            JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
+            Nutrition[] nutrition = order.calculateNutrition();
+            //orderForm = Inventory.findOrderCombo(workingDB.getFoodList(), nutrition);
+            //createRequestOutput("orderform.txt");
+            printMessage = "";
+            int grain = 0, FV = 0, protein = 0, other = 0;
+            for (int i = 0; i < orderForm.size(); i++){
+                if (Inventory.calculateTotalShortage(orderForm.get(i), nutrition[i]) < 0){
+                    Inventory.calculateShortage(orderForm.get(i), nutrition[i], grain, FV, protein, other);
+                    printMessage += "Calorie shortages:\n";
+                    if (grain < 0) printMessage += "Grains: " + (grain*-1) + "\n";
+                    if (FV < 0) printMessage += "Fruits and vegetables: " + (FV*-1) + "\n";
+                    if (protein < 0) printMessage += "Proteins: " + (protein*-1) + "\n";
+                    if (other < 0) printMessage += "Others: " + (other*-1) + "\n";
+                    this.order = null;
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Order has been processed.\nA comprehensive order form file 'orderform.txt' has been created in the working directory.\nThe current order has been erased.");
             this.order = null;
         }
     }
