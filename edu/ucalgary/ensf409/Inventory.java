@@ -36,12 +36,12 @@ public class Inventory {
         return grainCals + FVCals + proteinCals + otherCals; 
     }
 
-    public static void calculateShortage(Food[] foodList, Nutrition nutrition, int grainCals, int FVCals, int proteinCals, int otherCals){
+    public static int[] calculateShortage(Food[] foodList, Nutrition nutrition){
         // calculate the shortage of calories in a food list for each food group
-        grainCals = (int) (nutrition.getPercentGrains() * 0.01 * nutrition.getTotalCals() * -1);
-        FVCals = (int) (nutrition.getPercentFV() * 0.01 * nutrition.getTotalCals() * -1);
-        proteinCals = (int) (nutrition.getPercentProtein() * 0.01 * nutrition.getTotalCals() * -1);
-        otherCals = (int) (nutrition.getPercentOther() * 0.01 * nutrition.getTotalCals() * -1);
+        int grainCals = (int) (nutrition.getPercentGrains() * 0.01 * nutrition.getTotalCals() * -1);
+        int FVCals = (int) (nutrition.getPercentFV() * 0.01 * nutrition.getTotalCals() * -1);
+        int proteinCals = (int) (nutrition.getPercentProtein() * 0.01 * nutrition.getTotalCals() * -1);
+        int otherCals = (int) (nutrition.getPercentOther() * 0.01 * nutrition.getTotalCals() * -1);
 
         for (int i = 0; i < foodList.length; i++){
             Nutrition foodNutrition =  foodList[i].getNutrition();
@@ -50,6 +50,10 @@ public class Inventory {
             proteinCals += foodNutrition.getPercentProtein() * 0.01 * foodNutrition.getTotalCals();
             otherCals += foodNutrition.getPercentOther() * 0.01 * foodNutrition.getTotalCals();
         } 
+
+        int[] result = {grainCals, FVCals, proteinCals, otherCals};
+
+        return result;
     }
 
     public static int calculateTotalShortage(Food[] foodList, Nutrition nutrition){
