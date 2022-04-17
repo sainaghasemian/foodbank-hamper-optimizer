@@ -52,10 +52,12 @@ class Database
             Statement myStmt = dbConnect.createStatement();
             results = myStmt.executeQuery("SELECT * FROM AVAILABLE_FOOD");
             
+            int i = 0;
             while (results.next())
             {
-                Food food = new Food(results.getString("Name"), results.getInt("GrainContent"), results.getInt("FVContent"), results.getInt("ProContent"), results.getInt("Other"), results.getInt("Calories"));
+                Food food = new Food(i, results.getString("Name"), results.getInt("GrainContent"), results.getInt("FVContent"), results.getInt("ProContent"), results.getInt("Other"), results.getInt("Calories"));
                 foodList.add(food);
+                i++;
             }
             
             myStmt.close();
@@ -102,17 +104,14 @@ class Database
         }
     }
 
-    public void removeFoodByID(String id)
+    public void removeFoodByName(String name)
     {
         try 
         {
-            String query = "DELETE FROM available_food WHERE itemID = ?";
+            String query = "DELETE FROM available_food WHERE Name = ? LIMIT 1";
             PreparedStatement myStmt = dbConnect.prepareStatement(query);
 
-            myStmt.setString(1, id);
-                        
-            int rowCount = myStmt.executeUpdate();
-            System.out.println("Rows affected: " + rowCount);
+            myStmt.setString(1, name);         
             
             myStmt.close();
 

@@ -90,7 +90,6 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     
     public void actionPerformed(ActionEvent event){
         workingDB = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
-
         clients = clientsInput.getText();
 
         if(event.getSource().equals(addHamper)){
@@ -119,8 +118,8 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
             }
             JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
             Nutrition[] nutrition = order.calculateNutrition();
-            //orderForm = Inventory.findOrderCombo(workingDB.getFoodList(), nutrition);
-            //createRequestOutput("orderform.txt");
+            orderForm = Inventory.findOrderCombo(workingDB.getFoodList(), nutrition);
+            createRequestOutput("orderform.txt");
             printMessage = "";
             int grain = 0, FV = 0, protein = 0, other = 0;
             for (int i = 0; i < orderForm.size(); i++){
