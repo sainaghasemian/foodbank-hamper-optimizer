@@ -315,7 +315,7 @@ public class ProjectTest {
     public void testGetItemID()
     {
         Food food = new Food(8, "Apple", 5, 10, 23, 7, 8);
-        String expectedItemID = "10";
+        int expectedItemID = 8;
         int actualItemID = food.getItemID();
         assertEquals("The itemID of Food object did not match the expected result", expectedItemID, actualItemID);
     }
