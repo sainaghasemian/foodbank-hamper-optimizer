@@ -22,7 +22,7 @@ public class Nutrition {
     }
 
     //Returns the double representing total calories
-    public double getTotalCals() {
+    public int getTotalCals() {
         return this.TOTAL_CALS;
     }
 
