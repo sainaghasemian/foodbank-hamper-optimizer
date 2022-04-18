@@ -62,21 +62,6 @@ public class ProjectTest {
     }
     */
 
-    //testValidateClientInputForIncorrectType() once again tests the validateClientInput() method but this time testing the client ID int 
-    //it is provided with an invalid client id, to check whether or not it correctly returned the expected output of false
-
-    @Test
-    public void testValidateClientInputForIncorrectID()
-    {
-        String clientType = "Child under 8";
-        int clientID = -5;
-        boolean expectedValidate = false;
-        RequestIO requestIO = new RequestIO(clientType);
-        boolean actualValidate = requestIO.validateClientInput(clientType);
-        assertEquals("Validate method for client input failed to return false for an invalid input", expectedValidate, actualValidate);
-
-    }
-
     //ORDER CLASS TESTS
 
     //testOrderConstructor() tests to see if the default Hamper constructor creates a non-null object when given appropriate arguments.
@@ -167,12 +152,13 @@ public class ProjectTest {
         hamper.setFood(expectedFood);
         Food[] foundFood = hamper.getFood();
 
+        boolean foodMatch = true;
         int i = 0;
         for(Food food : expectedFood)
         {
-            if(expectedClient != foundClients[i])
+            if(food != foundFood[i])
             {
-                clientsMatch  = false;
+                foodsMatch  = false;
             }
 
             i++;
