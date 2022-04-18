@@ -61,7 +61,19 @@ public class ProjectTest {
         expectedNutrition[0] = new Nutrition(4000, 25, 25, 25, 25);
         Nutrition[] foundNutrition = order.calculateNutrition();
 
-        //assertEquals("The value of the Nutrition array created by calculateNutrition did not match the expected result ", expectedNutrition, foundNutrition);
+        boolean nutritionMatch = true;
+        int i = 0;
+        for(Nutrition nutrition : expectedNutrition)
+        {
+            if(nutrition != foundNutrition[i])
+            {
+                nutritionMatch  = false;
+            }
+
+            i++;
+        }
+
+        assertTrue("The value of the Nutrition array created by calculateNutrition did not match the expected result ", nutritionMatch);
     }
 
     //testGetHampers() creates valid clients inside of a client array to be added to a hamper. These are then added to the order, and the method
