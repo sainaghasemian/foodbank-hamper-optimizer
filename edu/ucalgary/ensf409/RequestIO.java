@@ -126,7 +126,6 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
             JOptionPane.showMessageDialog(this, "Hampers To Be Processed:\n" + printMessage);
             Nutrition[] nutrition = order.calculateNutrition();
             orderForm = Inventory.findOrderCombo(workingDB.getFoodList(), nutrition);
-            createRequestOutput(orderForm, "orderform.txt");
             printMessage = "";
             int[] array = new int[4];
             for (int i = 0; i < orderForm.size(); i++){
@@ -141,6 +140,12 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
                     this.order = null;
                     return;
                 }
+            }
+            try{
+                createRequestOutput(orderForm, "orderform.txt");
+            } catch (FileNotFoundException e){
+                JOptionPane.showMessageDialog(this, "Order has been processed, but order form file 'orderform.txt' could not be created.\nThe current order has been erased.");
+                return;
             }
             JOptionPane.showMessageDialog(this, "Order has been processed.\nA comprehensive order form file 'orderform.txt' has been created in the working directory.\nThe current order has been erased.");
             this.order = null;
@@ -179,29 +184,34 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         return inputValid;
     }
 
-    public static void createRequestOutput(ArrayList<Food[]> foodList, String outputFile) 
+    public static void createRequestOutput(ArrayList<Food[]> foodList, String outputFile) throws FileNotFoundException 
     {
-        try
-        {
-            PrintWriter outputWrite = new PrintWriter(new File(outputFile));
-            outputWrite.println("Hamper Order Form\n");
-            outputWrite.println("Name: \n");
-            outputWrite.println("Date: \n");
-            outputWrite.println("Original Request\n");
-            for(int i = 0; foodList !=null; i++) {
-                //order.getHampers().get(i).getClients();
-                outputWrite.printf("Hamper:", foodList);
+        PrintWriter outputWrite = new PrintWriter(new File(outputFile));
+        outputWrite.println("Hamper Order Form");
+        outputWrite.println("Name: ");
+        outputWrite.println("Date: ");
+        outputWrite.println("Original Request");
+        for (int k = 0; k < order.getHampers().size(); k++){
+            outputWrite.print("Hamper " + (k+1) + ": ");
+            for (int l = 0; l < order.getHampers().get(k).getClients().length; l++){
+                outputWrite.print(order.getHampers().get(k).getClients()[l].getType());
+                if (l + 1 != order.getHampers().get(k).getClients().length){
+                    outputWrite.print(", ");
+                }
             }
-
-            outputWrite.close();
-            
-
-            //order.getHampers();
+            outputWrite.println();
         }
-        catch(FileNotFoundException e)
-        {
 
+        outputWrite.println();
+
+        for (int k = 0; k < foodList.size(); k++){
+            outputWrite.print("Hamper " + (k+1) + " Items: ");
+            for (int l = 0; l < foodList.get(k).length; l++){
+                outputWrite.printf("\n%-8s%-50s", foodList.get(k)[l].getItemID(), foodList.get(k)[l].getName());
+            }
+            outputWrite.println("\n");
         }
+        outputWrite.close();
     }
 
 
