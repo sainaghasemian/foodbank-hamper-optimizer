@@ -393,7 +393,13 @@ public class ProjectTest {
     @Test
     public void testCalculateTotalExcess() //Saina
     {
-
+        Nutrition expectedNutrition = new Nutrition(1000, 25, 25, 25, 25);
+        Food[] expectedFood = new Food[2];
+        expectedFood[0] = new Food(10, "Burger", 25, 25, 25, 25, 1000);
+        expectedFood[1] = new Food(20, "Pizza", 30, 20, 25, 25, 500);
+        int expectedExcess = 500;
+        int actualExcess = Inventory.calculateTotalExcess(expectedFood, expectedNutrition);
+        assertEquals("The expected total excess of the inventory did not match the expected result, ", expectedExcess, actualExcess);
     }
 
     @Test
@@ -405,7 +411,13 @@ public class ProjectTest {
     @Test
     public void testCalculateTotalShortage() //Ana
     {
-
+        Nutrition expectedNutrition = new Nutrition(1000, 25, 25, 25, 25);
+        Food[] expectedFood = new Food[2];
+        expectedFood[0] = new Food(10, "Banana", 25, 25, 25, 25, 100);
+        expectedFood[1] = new Food(20, "Croissant", 30, 20, 25, 25, 400);
+        int expectedShortage = -500;
+        int actualShortage = Inventory.calculateTotalShortage(expectedFood, expectedNutrition);
+        assertEquals("The expected total excess of the inventory did not match the expected result, ", expectedShortage, actualShortage);
     }
 
     @Test
