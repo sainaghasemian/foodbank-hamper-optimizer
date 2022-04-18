@@ -258,7 +258,7 @@ public class ProjectTest {
         Nutrition nutrition = new Nutrition(2000, 40, 20, 20, 20);
         double expectedPercentGrains = 40;
         double actualPercentGrains = nutrition.getPercentGrains();
-        //assertEquals("The percentGrains of Nutrition object did not match the expected result", expectedPercentGrains, actualPercentGrains);
+        assertEquals("The percentGrains of Nutrition object did not match the expected result", expectedPercentGrains, actualPercentGrains, 0.001);
     }
 
     //testGetPercentFV() tests the getpercentFV() method for a Nutrition object. Constructs a Nutrition object using appropriate arguments
@@ -270,7 +270,7 @@ public class ProjectTest {
         Nutrition nutrition = new Nutrition(2000, 20, 40, 20, 20);
         double expectedPercentFV = 40;
         double actualPercentFV = nutrition.getPercentFV();
-        //assertEquals("The percentFV of Nutrition object did not match the expected result", expectedPercentFV, actualPercentFV);
+        assertEquals("The percentFV of Nutrition object did not match the expected result", expectedPercentFV, actualPercentFV, 0.001);
     }
 
     //testGetPercentProtein() tests the getpercentProtein() method for a Nutrition object. Constructs a Nutrition object using appropriate arguments
@@ -282,7 +282,7 @@ public class ProjectTest {
         Nutrition nutrition = new Nutrition(2000, 20, 20, 40, 20);
         double expectedPercentProtein = 40;
         double actualPercentProtein = nutrition.getPercentProtein();
-        //assertEquals("The percentProtein of Nutrition object did not match the expected result", expectedPercentProtein, actualPercentProtein);
+        assertEquals("The percentProtein of Nutrition object did not match the expected result", expectedPercentProtein, actualPercentProtein, 0.001);
     }
 
     //testGetPercentOther() tests the getpercentOther() method for a Nutrition object. Constructs a Nutrition object using appropriate arguments
@@ -294,7 +294,7 @@ public class ProjectTest {
         Nutrition nutrition = new Nutrition(2000, 20, 20, 20, 40);
         double expectedPercentOther = 40;
         double actualPercentOther = nutrition.getPercentOther();
-        //assertEquals("The percentOther of Nutrition object did not match the expected result", expectedPercentOther, actualPercentOther);
+        assertEquals("The percentOther of Nutrition object did not match the expected result", expectedPercentOther, actualPercentOther, 0.001);
     }
 
     //FOOD CLASS TESTS
