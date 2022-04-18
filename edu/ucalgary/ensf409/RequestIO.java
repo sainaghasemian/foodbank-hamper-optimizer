@@ -1,6 +1,6 @@
 /**
 @author Saina Ghasemian-Roudsari, Rachel Dalton, Ana Perrone, Isaiah Lemieux<a 
-@version 1.9
+@version 2.1
 @since   1.0
 */
 package edu.ucalgary.ensf409;
@@ -187,9 +187,9 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     public static void createRequestOutput(ArrayList<Food[]> foodList, String outputFile) throws FileNotFoundException 
     {
         PrintWriter outputWrite = new PrintWriter(new File(outputFile));
-        outputWrite.println("Hamper Order Form");
+        outputWrite.println("Hamper Order Form\n");
         outputWrite.println("Name: ");
-        outputWrite.println("Date: ");
+        outputWrite.println("Date: \n");
         outputWrite.println("Original Request");
         for (int k = 0; k < order.getHampers().size(); k++){
             outputWrite.print("Hamper " + (k+1) + ": ");
