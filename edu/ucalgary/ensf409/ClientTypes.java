@@ -5,6 +5,7 @@
 */
 package edu.ucalgary.ensf409;
 
+//Enumerations class using toString method
 public enum ClientTypes {
     ADULTFEMALE {
         public String toString() {

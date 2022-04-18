@@ -12,7 +12,6 @@ public class Client {
 
     //Client constructor
     public Client(String type, int percentGrains, int percentFV, int percentProtein, int percentOther, int totalCals) {
-        //this.CLIENT_ID = clientID;
         this.TYPE = type;
         this.NUTRITION = new Nutrition(totalCals, percentGrains, percentFV, percentProtein, percentOther);
         

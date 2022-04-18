@@ -1,3 +1,8 @@
+/**
+@author Saina Ghasemian-Roudsari, Rachel Dalton, Ana Perrone, Isaiah Lemieux<a 
+@version 1.3
+@since   1.0
+*/
 package edu.ucalgary.ensf409;
 
 class Food {
@@ -26,6 +31,7 @@ class Food {
         return this.FOOD_NAME;
     }
 
+    //Returns the nutrition attributes 
     public Nutrition getNutrition() {
         return this.NUTRITION;
     }
