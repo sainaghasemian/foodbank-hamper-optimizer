@@ -38,7 +38,7 @@ class Food {
         return this.FOOD_NAME;
     }
 
-    //Returns the nutrition object 
+    //Returns the Nutrition object 
     public Nutrition getNutrition() {
         return this.NUTRITION;
     }

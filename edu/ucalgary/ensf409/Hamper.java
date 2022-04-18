@@ -7,6 +7,7 @@ package edu.ucalgary.ensf409;
 
 class Hamper
 {
+    //private attributes
     private final Client[] CLIENTS;
     private Food[] food;
 

@@ -5,7 +5,9 @@
 */
 package edu.ucalgary.ensf409;
 
-//Enumerations class using toString method
+//Enumerations class using the toString method
+//Any ClientTypes can be expanded to its written form 
+//for example (ADULTFEMALE-> Adult Female) 
 public enum ClientTypes {
     ADULTFEMALE {
         public String toString() {
