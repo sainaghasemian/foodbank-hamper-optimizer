@@ -12,13 +12,15 @@ import java.util.regex.*;
 import org.junit.Test;
 import org.junit.Assert;
 import static org.junit.Assert.*;
+import java.util.*;
 
 public class ProjectTest {
 
     //REQUESTIO CLASS TESTS
 
     //RequestIO takes from user input and throws IllegalArgumentException when the Strings given in the input do not match values in ClientTypes
-
+    //MAYBE DELETE LATER - CANT TEST WITHOUT GUI
+    /*
     @Test
     public void testInvalidRequestIO() 
     {
@@ -33,14 +35,15 @@ public class ProjectTest {
         }
         assertTrue("An illegal argument exception was not thrown when invalid input was provided", exceptionThrown);
     }
-
+*/
     //test for file not found exception
 
     @Test
     public void testCreateRequestOutput() {
         boolean exceptionThrown = false;
         try {
-            RequestIO.createRequestOutput();
+            ArrayList<Food[]> foodList = new ArrayList<Food[]>();
+            RequestIO.createRequestOutput(foodList, "orderform.txt");
         }
         catch (FileNotFoundException e) {
             exceptionThrown = true;
