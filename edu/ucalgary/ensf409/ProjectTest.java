@@ -59,7 +59,7 @@ public class ProjectTest {
     {
         Order expectedOrder = new Order();
         ArrayList<Hamper> hamperList = new ArrayList<Hamper>();
-        ArrayList<Client> clientList = new ArrayList<Client>();
+        Client[] clientList = new Client[];
         Hamper hamper = new Hamper(clientList);
         hamperList.add(hamper);
         hamperList.setOrder(hamperList);
