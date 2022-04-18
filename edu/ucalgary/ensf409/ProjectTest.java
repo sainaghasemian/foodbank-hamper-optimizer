@@ -113,8 +113,9 @@ public class ProjectTest {
     public void testAddToOrder()
     {
         Client[] clients = new Client[1];
-        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
+        Order order = new Order();
         order.addToOrder(hamper);
         
         assertNotNull("The ArrayList of Hampers is null after creating a new Order and adding a Hamper to it", order.getHampers().get(0));
@@ -129,12 +130,13 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
-        clients[1] = new Client("3", "Adult Male", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("Adult Female", 2000, 25, 25, 25, 25);
+        clients[1] = new Client("Adult Male", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
-        Nutrition[] expectedNutrition = new Nutrition(4000, 25, 25, 25, 25);
-        Nutrition[] foundNutrition = order.calculateNutrition(hamper);
+        Nutrition[] expectedNutrition = new Nutrition[1];
+        expectedNutrition[0] = new Nutrition(4000, 25, 25, 25, 25);
+        Nutrition[] foundNutrition = order.calculateNutrition();
 
         assertEquals("The value of the Nutrition array created by calculateNutrition did not match the expected result ", expectedNutrition, foundNutrition);
     }
@@ -147,8 +149,8 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
-        clients[1] = new Client("3", "Adult Male", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("Adult Female", 2000, 25, 25, 25, 25);
+        clients[1] = new Client("Adult Male", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         ArrayList<Hamper> expectedHampers = new ArrayList<Hamper>();
@@ -166,7 +168,7 @@ public class ProjectTest {
     public void testHamperConstructor() 
     {
         Client[] clients = new Client[1];
-        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         assertNotNull("Hamper constructor did not create an object when given a list of clients", hamper);
     }
@@ -178,10 +180,10 @@ public class ProjectTest {
     public void testSetAndGetFood() 
     {
         Food[] expectedFood = new Food[1];
-        expectedFood[0] = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        expectedFood[0] = new Food(10, "Apple", 5, 10, 23, 7, 8);
         Hamper hamper = new Hamper(null);
         hamper.setFood(expectedFood);
-        Food foundFood = hamper.getFood();
+        Food[] foundFood = hamper.getFood();
         assertEquals("The value of the Food array in hamper did not match the expected result ", expectedFood, foundFood);
     }
 
@@ -191,9 +193,8 @@ public class ProjectTest {
     @Test
     public void testGetClients() 
     {
-        Order order = new Order();
         Client[] expectedClients = new Client[1];
-        expectedClients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        expectedClients[0] = new Client("Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(expectedClients);
         Client[] foundClients = hamper.getClients();
         assertEquals("The value of the Client array in Hamper did not match the expected result", expectedClients, foundClients);
@@ -205,7 +206,7 @@ public class ProjectTest {
 
     @Test
     public void testClientConstructor() {
-        Client client = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        Client client = new Client("Adult Female", 2000, 25, 25, 25, 25);
         assertNotNull("Client constructor did not create a new object of type Client when given the appropriate arguments", client);
     }
 
@@ -214,7 +215,7 @@ public class ProjectTest {
 
     @Test 
     public void testGetNutritionClient() {
-        Client client = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        Client client = new Client("Adult Female", 2000, 25, 25, 25, 25);
         Nutrition expectedNutrition = new Nutrition(2000, 25, 25, 25, 25);
         Nutrition actualNutrition = client.getNutrition();
         assertEquals("The Nutrition object of Client did not match the expected result", expectedNutrition, actualNutrition);
