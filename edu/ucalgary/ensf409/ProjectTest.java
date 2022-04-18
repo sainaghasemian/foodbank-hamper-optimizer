@@ -26,7 +26,7 @@ public class ProjectTest {
         input[0][0] = "abc";
         boolean exceptionThrown = false;
         try {
-            RequestIO.createRequestOutput(input); 
+            RequestIO.createOrderFromInput(input); 
         }
         catch (IllegalArgumentException e) {
             exceptionThrown = true;
@@ -110,7 +110,7 @@ public class ProjectTest {
     public void testAddToOrder()
     {
         Client[] clients = new Client[1];
-        clients[0] = new Client("2", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         
@@ -126,12 +126,12 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client("2", 2000, 25, 25, 25, 25);
-        clients[1] = new Client("3", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        clients[1] = new Client("3", "Adult Male", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
-        Nutrition expectedNutrition = new Nutrition(4000, 25, 25, 25, 25);
-        Nutrition[] foundNutrition = order.calculateNutrition();
+        Nutrition[] expectedNutrition = new Nutrition(4000, 25, 25, 25, 25);
+        Nutrition[] foundNutrition = order.calculateNutrition(hamper);
 
         assertEquals("The value of the Nutrition array created by calculateNutrition did not match the expected result ", expectedNutrition, foundNutrition);
     }
@@ -144,8 +144,8 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client("2", 2000, 25, 25, 25, 25);
-        clients[1] = new Client("3", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        clients[1] = new Client("3", "Adult Male", 2000, 25, 25, 25, 25);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         ArrayList<Hamper> expectedHampers = new ArrayList<Hamper>();
@@ -505,7 +505,7 @@ public class ProjectTest {
     {
          //Adult Female
         String expected = "Adult Female";
-        String actual = ClientTypes.ADULTFEMALE.toString();
+        String actual = ClientTypes.ADULFEMALE.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
         //Adult Male
         expected = "Adult Male";

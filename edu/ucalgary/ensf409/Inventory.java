@@ -9,6 +9,7 @@ import java.util.ArrayList;
  
 public class Inventory {
  
+    //finds all possible food combinations using the current database and adds each combination to an arraylist
     public static void findCombinations(ArrayList<Food[]> combinations, Food[] currCombination, ArrayList<Food> workingFoodList, Nutrition nutrition, int start, int end, int index, int choose){
         if (index == choose){
             combinations.add(currCombination);
@@ -20,17 +21,15 @@ public class Inventory {
         }
     }
  
+    //Returns the number which represents the number of excess calories in a list of food compared to the nutrition requirements
     public static int calculateTotalExcess(Food[] foodList, Nutrition nutrition){
-        // calculate the excess calories in a food list
         int grainCals = (int) (nutrition.getPercentGrains() * 0.01 * nutrition.getTotalCals() * -1);
         int FVCals = (int) (nutrition.getPercentFV() * 0.01 * nutrition.getTotalCals() * -1);
         int proteinCals = (int) (nutrition.getPercentProtein() * 0.01 * nutrition.getTotalCals() * -1);
         int otherCals = (int) (nutrition.getPercentOther() * 0.01 * nutrition.getTotalCals() * -1);
 
-        for (int i = 0; i < foodList.length; i++){
-
-            //need to figure out if any values should be floored or ceilinged\
-
+        for (int i = 0; i < foodList.length; i++)
+        {
             Nutrition foodNutrition =  foodList[i].getNutrition();
             grainCals += foodNutrition.getPercentGrains() * 0.01 * foodNutrition.getTotalCals();
             FVCals += foodNutrition.getPercentFV() * 0.01 * foodNutrition.getTotalCals();
@@ -41,8 +40,9 @@ public class Inventory {
         return grainCals + FVCals + proteinCals + otherCals; 
     }
 
+    // returns an array of the shortage, if there is a shortage, for each food group
+    //If there is an excess, returns zero
     public static int[] calculateShortage(Food[] foodList, Nutrition nutrition){
-        // calculate the shortage of calories in a food list for each food group
         int grainCals = (int) (nutrition.getPercentGrains() * 0.01 * nutrition.getTotalCals() * -1);
         int FVCals = (int) (nutrition.getPercentFV() * 0.01 * nutrition.getTotalCals() * -1);
         int proteinCals = (int) (nutrition.getPercentProtein() * 0.01 * nutrition.getTotalCals() * -1);
@@ -61,6 +61,7 @@ public class Inventory {
         return result;
     }
 
+    //Same as calculate excess but for shortage instead
     public static int calculateTotalShortage(Food[] foodList, Nutrition nutrition){
         int calShortage = 0;
         int grainCals = (int) (nutrition.getPercentGrains() * 0.01 * nutrition.getTotalCals() * -1);
@@ -84,6 +85,8 @@ public class Inventory {
         return calShortage;
     }
 
+    //Takes the arraylist of food arrays and finds the best combination. 
+    //The best combination can still be a shortage but it will have the least amount of shortage
     public static Food[] findBestCombination(ArrayList<Food[]> combinations, Nutrition nutrition){
         Food[] bestCombination = new Food[0];
         for (int a = 0; a < combinations.size(); a++){
@@ -111,6 +114,7 @@ public class Inventory {
         return bestCombination;
     }
  
+    //Finds the best food combination for each hamper that exists using the current list of food from the database
     public static ArrayList<Food[]> findOrderCombo(ArrayList<Food> workingFoodList, Nutrition[] nutrition) {
         ArrayList<Food[]> bestCombinations = new ArrayList<Food[]>();
         for (int i = 0; i < nutrition.length; i++){

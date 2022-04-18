@@ -57,7 +57,7 @@ class Database
             Statement myStmt = dbConnect.createStatement();
             results = myStmt.executeQuery("SELECT * FROM AVAILABLE_FOOD");
             
-            int i = 0;
+            int i = 1;
             while (results.next())
             {
                 Food food = new Food(i, results.getString("Name"), results.getInt("GrainContent"), results.getInt("FVContent"), results.getInt("ProContent"), results.getInt("Other"), results.getInt("Calories"));
@@ -116,7 +116,9 @@ class Database
             String query = "DELETE FROM available_food WHERE Name = ? LIMIT 1";
             PreparedStatement myStmt = dbConnect.prepareStatement(query);
 
-            myStmt.setString(1, name);         
+            myStmt.setString(1, name);
+            
+            myStmt.executeUpdate();
             
             myStmt.close();
 

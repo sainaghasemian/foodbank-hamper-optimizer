@@ -19,7 +19,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     private static Order order;
     private String clients;
     private static ArrayList<Food[]> orderForm;
-    private Database workingDB;
+    private static Database workingDB;
 
     private JLabel instructions;
     private JLabel clientsLabel;
@@ -36,6 +36,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         
     }
     
+    //sets up buttons and interface
     public void setupGUI(){
         
         instructions = new JLabel("Please enter the list of clients that are part of a single hamper.");
@@ -70,6 +71,8 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         this.add(submitPanel, BorderLayout.SOUTH);
     }
 
+    //takes user input string and takes each individual client, finds that client in the arraylist of clients stored in the database class and creates a new client using that
+    //The resulting client array is returned
     public Client[] createClientList(String clients){
         ArrayList<Client> newClientList = new ArrayList<Client>();
         Client[] newClientArray;
@@ -95,8 +98,11 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         return newClientArray;
     }
     
+    //Part of the GUI that detects button clicks and runs a process depending on the source
+    //First process is adding a hamper to list of hampers in the order
+    //Second process is processing the order
     public void actionPerformed(ActionEvent event){
-        workingDB = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
+        
         clients = clientsInput.getText();
 
         if(event.getSource().equals(addHamper)){
@@ -149,6 +155,19 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
             }
             JOptionPane.showMessageDialog(this, "Order has been processed.\nA comprehensive order form file 'orderform.txt' has been created in the working directory.\nThe current order has been erased.");
             this.order = null;
+
+            workingDB.initializeConnection();
+
+            for(Food[] foodArray : orderForm)
+            {
+                for(Food food : foodArray)
+                {
+                    workingDB.removeFoodByName(food.getName());
+                    //System.out.println("Food should be deleted");
+                }
+            }
+
+            workingDB.close();
         }
     }
     
@@ -164,6 +183,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
     public void mouseReleased(MouseEvent event){}  
     
+    //Uses enums to validate format and client type of the users input and returns a boolean value
     private boolean validateClientInput(String clients){
         StringTokenizer tokenizer = new StringTokenizer(clients, "\n");
         boolean inputValid = true;
@@ -184,6 +204,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         return inputValid;
     }
 
+    //Takes the orderform and creates the output file
     public static void createRequestOutput(ArrayList<Food[]> foodList, String outputFile) throws FileNotFoundException 
     {
         PrintWriter outputWrite = new PrintWriter(new File(outputFile));
@@ -214,13 +235,17 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         outputWrite.close();
     }
 
-
+    //Returns the Order
     public Order getOrder() {return this.order;}
     
-    public static void main(String[] args) { 
+    public static void main(String[] args) 
+    {
+        workingDB = new Database("jdbc:mysql://localhost/food_inventory","student","ensf");
         EventQueue.invokeLater(() -> {
             new RequestIO().setVisible(true);        
         });
+
+        
     }
         
 }
