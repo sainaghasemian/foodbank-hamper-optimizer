@@ -9,7 +9,8 @@ import java.util.ArrayList;
  
 public class Inventory {
  
-    //finds all possible food combinations using the current database and adds each combination to an arraylist
+    //This method finds all the possible food combinations for each hamper,
+    //using the current database and adds each combination to an arraylist of food
     public static void findCombinations(ArrayList<Food[]> combinations, Food[] currCombination, ArrayList<Food> workingFoodList, Nutrition nutrition, int start, int end, int index, int choose){
         if (index == choose){
             combinations.add(currCombination);
@@ -21,7 +22,9 @@ public class Inventory {
         }
     }
  
-    //Returns the number which represents the number of excess calories in a list of food compared to the nutrition requirements
+    //This method uses an array of food, and a nutrition object to calculate the excess calories for each
+    //and ever food group. It will use getter methods from the Nutrition class to calculate the return value.
+    //The number returned represents the number of excess calories in a list of food compared to the nutrition requirements
     public static int calculateTotalExcess(Food[] foodList, Nutrition nutrition){
         int grainCals = (int) (nutrition.getPercentGrains() * 0.01 * nutrition.getTotalCals() * -1);
         int FVCals = (int) (nutrition.getPercentFV() * 0.01 * nutrition.getTotalCals() * -1);
@@ -40,8 +43,12 @@ public class Inventory {
         return grainCals + FVCals + proteinCals + otherCals; 
     }
 
-    // returns an array of the shortage, if there is a shortage, for each food group
-    //If there is an excess, returns zero
+    //The method calculateShortage uses an array of food, and a nutrition object to calculate if there would
+    //any case where a group of food has a shortage. This would occur in the program when the same input 
+    //(ex.Adult Female) is ran multiple times over and over so the database will then have a shortage in a certain food group.
+    //If a shortage of a food group occurs this method will return an array of the shortage 
+    //If there is an excess of a food group this method returns zero (since then there is no shortage)   
+    //as calculateTotalExcess deals with the excess of food.
     public static int[] calculateShortage(Food[] foodList, Nutrition nutrition){
         int grainCals = (int) (nutrition.getPercentGrains() * 0.01 * nutrition.getTotalCals() * -1);
         int FVCals = (int) (nutrition.getPercentFV() * 0.01 * nutrition.getTotalCals() * -1);
@@ -61,7 +68,11 @@ public class Inventory {
         return result;
     }
 
-    //Same as calculate excess but for shortage instead
+    //This method uses an array of food, and a nutrition object to calculate the shortage calories for each
+    //and ever food group. It will use getter methods from the Nutrition class to calculate the return value.
+    //The number returned will be the total amount of shortage and its important to note that this return value 
+    //will always be a negative number because as stated before it represents how much we are short of a certian
+    //amount of calories.
     public static int calculateTotalShortage(Food[] foodList, Nutrition nutrition){
         int calShortage = 0;
         int grainCals = (int) (nutrition.getPercentGrains() * 0.01 * nutrition.getTotalCals() * -1);
@@ -85,7 +96,7 @@ public class Inventory {
         return calShortage;
     }
 
-    //Takes the arraylist of food arrays and finds the best combination. 
+    //This method takes the arraylist of food arrays and finds the best possible combination.
     //The best combination can still be a shortage but it will have the least amount of shortage
     public static Food[] findBestCombination(ArrayList<Food[]> combinations, Nutrition nutrition){
         Food[] bestCombination = new Food[0];
