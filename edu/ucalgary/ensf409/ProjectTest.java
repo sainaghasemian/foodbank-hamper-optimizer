@@ -16,51 +16,7 @@ import java.util.*;
 
 public class ProjectTest {
 
-    //REQUESTIO CLASS TESTS
-
-    //test for file not found exception
-
-    @Test
-    public void testCreateRequestOutput() {
-        boolean exceptionThrown = false;
-        try {
-            ArrayList<Food[]> foodList = new ArrayList<Food[]>();
-            RequestIO.createRequestOutput(foodList, "orderform.txt");
-        }
-        catch (FileNotFoundException e) {
-            exceptionThrown = true;
-        }
-        assertTrue("A File not found exception was not thrown when createRequestOutput was called", exceptionThrown);
-    }
-
-    //testSetandGetOrder() tests the setOrder() method for a Hamper list by setting the order of the hamper list
-    //then using getOrder() method to get the object's order field. Then compares this return to the expected return object.
-
-    @Test 
-    public void testSetAndGetOrder()
-    {
-        Order expectedOrder = new Order();
-        RequestIO requestIO = new RequestIO(expectedOrder);
-        Order foundOrder = requestIO.getOrder();
-        assertEquals("The value of the order did not match the expected result ", expectedOrder, foundOrder);
-    }
-
-    //testValidateClientInputForIncorrectType() tests the validateClientInput() method, focusing on the client type string 
-    //it is provided with an invalid client type, to check whether or not it correctly returned the expected output of false   
-
-    //We were forced to comment out this test since validateClientType produces a GUI. 
-    /*
-    @Test
-    public void testValidateClientInputForIncorrectType()
-    {
-        String clientType = "Male Child Under 8";
-        boolean expectedValidate = false;
-        RequestIO requestIO = new RequestIO(clientType);
-        boolean actualValidate = requestIO.validateClientInput(clientType);
-        assertEquals("Validate method for client input failed to return false for an invalid input", expectedValidate, actualValidate);
-
-    }
-    */
+    
 
     //ORDER CLASS TESTS
 
@@ -152,7 +108,7 @@ public class ProjectTest {
         hamper.setFood(expectedFood);
         Food[] foundFood = hamper.getFood();
 
-        boolean foodMatch = true;
+        boolean foodsMatch = true;
         int i = 0;
         for(Food food : expectedFood)
         {
@@ -164,7 +120,7 @@ public class ProjectTest {
             i++;
         }
 
-        assertEquals("The value of the Food array in hamper did not match the expected result ", expectedFood, foundFood);
+        assertTrue("The value of the Food array in hamper did not match the expected result ", foodsMatch);
     }
 
     //testGetClients() tests the getClients() method for an Order object. Constructs an Order object using a Client object, 
@@ -487,4 +443,50 @@ public class ProjectTest {
         actual = ClientTypes.CHILDUNDER8.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
     }
+
+    //REQUESTIO CLASS TESTS
+
+    //test for file not found exception
+
+    @Test
+    public void testCreateRequestOutput() {
+        boolean exceptionThrown = false;
+        try {
+            ArrayList<Food[]> foodList = new ArrayList<Food[]>();
+            RequestIO.createRequestOutput(foodList, "order");
+        }
+        catch (FileNotFoundException e) {
+            exceptionThrown = true;
+        }
+        assertFalse("A File not found exception was thrown when createRequestOutput was called", exceptionThrown);
+    }
+
+    //testSetandGetOrder() tests the setOrder() method for a Hamper list by setting the order of the hamper list
+    //then using getOrder() method to get the object's order field. Then compares this return to the expected return object.
+
+    @Test 
+    public void testSetAndGetOrder()
+    {
+        Order expectedOrder = new Order();
+        RequestIO requestIO = new RequestIO(expectedOrder);
+        Order foundOrder = requestIO.getOrder();
+        assertEquals("The value of the order did not match the expected result ", expectedOrder, foundOrder);
+    }
+
+    //testValidateClientInputForIncorrectType() tests the validateClientInput() method, focusing on the client type string 
+    //it is provided with an invalid client type, to check whether or not it correctly returned the expected output of false   
+
+    //We were forced to comment out this test since validateClientType produces a GUI. 
+    /*
+    @Test
+    public void testValidateClientInputForIncorrectType()
+    {
+        String clientType = "Male Child Under 8";
+        boolean expectedValidate = false;
+        RequestIO requestIO = new RequestIO(clientType);
+        boolean actualValidate = requestIO.validateClientInput(clientType);
+        assertEquals("Validate method for client input failed to return false for an invalid input", expectedValidate, actualValidate);
+
+    }
+    */
 }
