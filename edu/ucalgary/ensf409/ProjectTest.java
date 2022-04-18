@@ -53,8 +53,8 @@ public class ProjectTest {
     {
         Order order = new Order();
         Client[] clients = new Client[2];
-        clients[0] = new Client("Adult Female", 2000, 25, 25, 25, 25);
-        clients[1] = new Client("Adult Male", 2000, 25, 25, 25, 25);
+        clients[0] = new Client("Adult Female", 25, 25, 25, 25, 2000);
+        clients[1] = new Client("Adult Male", 25, 25, 25, 25, 2000);
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         Nutrition[] expectedNutrition = new Nutrition[1];
@@ -62,15 +62,25 @@ public class ProjectTest {
         Nutrition[] foundNutrition = order.calculateNutrition();
 
         boolean nutritionMatch = true;
-        int i = 0;
-        for(Nutrition nutrition : expectedNutrition)
+        for(int i = 0; i < expectedNutrition.length; i++)
         {
-            if(nutrition != foundNutrition[i])
+            if(expectedNutrition[i].getPercentGrains() != foundNutrition[i].getPercentGrains())
+            {
+                System.out.println(expectedNutrition[i].getPercentGrains() + " vs " +  foundNutrition[i].getPercentGrains());
+                nutritionMatch  = false;
+            }
+            else if(expectedNutrition[i].getPercentFV() != foundNutrition[i].getPercentFV())
             {
                 nutritionMatch  = false;
             }
-
-            i++;
+            else if(expectedNutrition[i].getPercentProtein() != foundNutrition[i].getPercentProtein())
+            {
+                nutritionMatch  = false;
+            }
+            else if(expectedNutrition[i].getPercentOther() != foundNutrition[i].getPercentOther())
+            {
+                nutritionMatch  = false;
+            }
         }
 
         assertTrue("The value of the Nutrition array created by calculateNutrition did not match the expected result ", nutritionMatch);
@@ -89,7 +99,7 @@ public class ProjectTest {
         Hamper hamper = new Hamper(clients);
         order.addToOrder(hamper);
         ArrayList<Hamper> expectedHampers = new ArrayList<Hamper>();
-        expectedHampers.set(0, hamper);
+        expectedHampers.add(0, hamper);
         ArrayList<Hamper> foundHampers = order.getHampers();
 
         assertEquals("The value of the Hamper arrayList in order did not match the expected result ", expectedHampers, foundHampers);
