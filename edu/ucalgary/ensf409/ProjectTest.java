@@ -298,7 +298,7 @@ public class ProjectTest {
     @Test
     public void testFoodConstructor()
     {
-        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        Food food = new Food(1, "Apple", 5, 10, 23, 7, 8);
         assertNotNull("Food constructor did not create a new object of type Food when given the appropriate arguments", food);
     }
 
@@ -308,9 +308,9 @@ public class ProjectTest {
     @Test
     public void testGetItemID()
     {
-        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        Food food = new Food(8, "Apple", 5, 10, 23, 7, 8);
         String expectedItemID = "10";
-        String actualItemID = food.getItemID();
+        int actualItemID = food.getItemID();
         assertEquals("The itemID of Food object did not match the expected result", expectedItemID, actualItemID);
     }
 
@@ -320,7 +320,7 @@ public class ProjectTest {
     @Test
     public void testGetName()
     {
-        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
+        Food food = new Food(13, "Apple", 5, 10, 23, 7, 8);
         String expectedName = "Apple";
         String actualName = food.getName();
         assertEquals("The name of Food object did not match the expected result", expectedName, actualName);
@@ -332,9 +332,9 @@ public class ProjectTest {
     @Test
     public void testGetNutritionFood()
     {
-        Food food = new Food("10", "Apple", 5, 10, 23, 7, 8);
-        String expectedNutrition = new Nutrition(5, 10, 23, 7, 8);
-        String actualNutrition = food.getNutrtition();
+        Food food = new Food(11, "Apple", 5, 10, 23, 7, 8);
+        Nutrition expectedNutrition = new Nutrition(5, 10, 23, 7, 8);
+        Nutrition actualNutrition = food.getNutrition();
         assertEquals("The nutrition of Food object did not match the expected result", expectedNutrition, actualNutrition);
     }
 
@@ -508,7 +508,7 @@ public class ProjectTest {
     {
          //Adult Female
         String expected = "Adult Female";
-        String actual = ClientTypes.ADULFEMALE.toString();
+        String actual = ClientTypes.ADULTFEMALE.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
         //Adult Male
         expected = "Adult Male";
