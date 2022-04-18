@@ -35,6 +35,36 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         
     }
+
+    //Constructor for testing purposes
+    public RequestIO(Order order)
+    {
+         this.order = order;
+         this.clients = null;
+         this.orderForm = null;
+         this.workingDB = null;
+         this.instructions = null;
+         this.clientsLabel = null;
+         this.clientsInput = null;
+         this.processOrder = null;
+         this.addHamper = null;     
+        
+    }
+
+    //Constructor for testing purposes
+    public RequestIO(String clients)
+    {
+         this.order = null;
+         this.clients = clients;
+         this.orderForm = null;
+         this.workingDB = null;
+         this.instructions = null;
+         this.clientsLabel = null;
+         this.clientsInput = null;
+         this.processOrder = null;
+         this.addHamper = null;     
+        
+    }
     
     //sets up buttons and interface
     public void setupGUI(){
@@ -184,7 +214,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
     public void mouseReleased(MouseEvent event){}  
     
     //Uses enums to validate format and client type of the users input and returns a boolean value
-    private boolean validateClientInput(String clients){
+    public boolean validateClientInput(String clients){
         StringTokenizer tokenizer = new StringTokenizer(clients, "\n");
         boolean inputValid = true;
 

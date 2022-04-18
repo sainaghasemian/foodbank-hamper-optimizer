@@ -19,6 +19,13 @@ class Food {
         this.NUTRITION = new Nutrition(cals, grain, fv, pro, other);
     }
 
+    //Food constructor for testing purposes
+    public Food(int itemID, String name, Nutrition nutrition) {
+        this.ITEM_ID = itemID;
+        this.FOOD_NAME = name;
+        this.NUTRITION = nutrition;
+    }
+
     
     //Returns the food ItemID 
     public int getItemID() {

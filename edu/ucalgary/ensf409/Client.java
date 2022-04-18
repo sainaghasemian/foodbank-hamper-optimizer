@@ -17,6 +17,12 @@ public class Client {
         
     }
 
+    //Client constructor for testing purposes
+    public Client(String type, Nutrition nutrition) {
+        this.TYPE = type;
+        this.NUTRITION = nutrition;
+    }
+
     //Returns Nutrition object
     public Nutrition getNutrition() {
         return this.NUTRITION;
