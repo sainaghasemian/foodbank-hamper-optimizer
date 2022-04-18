@@ -205,7 +205,7 @@ public class ProjectTest {
 
     @Test
     public void testClientConstructor() {
-        Client client = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        Client client = new Client("Adult Female", 2000, 25, 25, 25, 25);
         assertNotNull("Client constructor did not create a new object of type Client when given the appropriate arguments", client);
     }
 
@@ -214,7 +214,7 @@ public class ProjectTest {
 
     @Test 
     public void testGetNutritionClient() {
-        Client client = new Client("2", "Adult Female", 2000, 25, 25, 25, 25);
+        Client client = new Client("Adult Female", 2000, 25, 25, 25, 25);
         Nutrition expectedNutrition = new Nutrition(2000, 25, 25, 25, 25);
         Nutrition actualNutrition = client.getNutrition();
         assertEquals("The Nutrition object of Client did not match the expected result", expectedNutrition, actualNutrition);
@@ -250,8 +250,8 @@ public class ProjectTest {
     public void testGetPercentGrains()
     {
         Nutrition nutrition = new Nutrition(2000, 40, 20, 20, 20);
-        int expectedPercentGrains = 40;
-        int actualPercentGrains = nutrition.getPercentGrains();
+        double expectedPercentGrains = 40;
+        double actualPercentGrains = nutrition.getPercentGrains();
         assertEquals("The percentGrains of Nutrition object did not match the expected result", expectedPercentGrains, actualPercentGrains);
     }
 
@@ -262,8 +262,8 @@ public class ProjectTest {
     public void testGetPercentFV()
     {
         Nutrition nutrition = new Nutrition(2000, 20, 40, 20, 20);
-        int expectedPercentFV = 40;
-        int actualPercentFV = nutrition.getPercentFV();
+        double expectedPercentFV = 40;
+        double actualPercentFV = nutrition.getPercentFV();
         assertEquals("The percentFV of Nutrition object did not match the expected result", expectedPercentFV, actualPercentFV);
     }
 
@@ -274,8 +274,8 @@ public class ProjectTest {
     public void testGetPercentProtein()
     {
         Nutrition nutrition = new Nutrition(2000, 20, 20, 40, 20);
-        int expectedPercentProtein = 40;
-        int actualPercentProtein = nutrition.getPercentProtein();
+        double expectedPercentProtein = 40;
+        double actualPercentProtein = nutrition.getPercentProtein();
         assertEquals("The percentProtein of Nutrition object did not match the expected result", expectedPercentProtein, actualPercentProtein);
     }
 
@@ -286,8 +286,8 @@ public class ProjectTest {
     public void testGetPercentOther()
     {
         Nutrition nutrition = new Nutrition(2000, 20, 20, 20, 40);
-        int expectedPercentOther = 40;
-        int actualPercentOther = nutrition.getPercentOther();
+        double expectedPercentOther = 40;
+        double actualPercentOther = nutrition.getPercentOther();
         assertEquals("The percentOther of Nutrition object did not match the expected result", expectedPercentOther, actualPercentOther);
     }
 
@@ -508,7 +508,7 @@ public class ProjectTest {
     {
          //Adult Female
         String expected = "Adult Female";
-        String actual = ClientTypes.ADULFEMALE.toString();
+        String actual = ClientTypes.ADULTFEMALE.toString();
         assertEquals("Enumeration Direction toString Method not returning correct String", expected, actual);
         //Adult Male
         expected = "Adult Male";
