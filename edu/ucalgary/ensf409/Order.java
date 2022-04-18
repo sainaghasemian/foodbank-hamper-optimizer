@@ -9,6 +9,7 @@ import java.util.*;
 
 class Order
 {
+    //Private arraylist of hampers
     private ArrayList<Hamper> hampers;
 
     //Order constructor
