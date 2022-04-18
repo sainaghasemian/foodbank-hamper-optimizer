@@ -185,17 +185,17 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         {
             PrintWriter outputWrite = new PrintWriter(new File(outputFile));
             outputWrite.println("Hamper Order Form\n");
-            outputWrite.println("Name: \n");
+            outputWrite.println("Name: ");
             outputWrite.println("Date: \n");
             outputWrite.println("Original Request\n");
-            for(int i = 0; foodList !=null; i++) {
-                //order.getHampers().get(i).getClients();
+            for(int i = 0; foodList ==; i++) { //every element in array list, 2nd for goes through arraylist
+                order.getHampers();
                 outputWrite.printf("Hamper:", foodList);
             }
 
             outputWrite.close();
             
-
+            //order.getHampers().get(i).getClients();
             //order.getHampers();
         }
         catch(FileNotFoundException e)
@@ -211,7 +211,6 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         EventQueue.invokeLater(() -> {
             new RequestIO().setVisible(true);        
         });
-        //createRequestOutput(orderForm);
     }
         
 }
