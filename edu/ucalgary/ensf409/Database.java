@@ -85,6 +85,7 @@ class Database
         this.PASSWORD = null;
     }
 
+    //Initializes the connection with the database
     public void initializeConnection()
     {
         try
@@ -97,6 +98,7 @@ class Database
         }  
     }
 
+    //Closes the connection with the database
     public void close() 
     {
         try 
@@ -109,6 +111,7 @@ class Database
         }
     }
 
+    //Removes one food item from the database based on its name
     public void removeFoodByName(String name)
     {
         try 
@@ -129,11 +132,13 @@ class Database
         }
     }
 
+    //Returns the list of Clients
     public ArrayList<Client> getClientList()
     {
         return this.clientList;
     }
 
+    //Returns the list of Food
     public ArrayList<Food> getFoodList()
     {
         return this.foodList;

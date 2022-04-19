@@ -350,15 +350,13 @@ public class ProjectTest {
     //INVENTORY CLASS TESTS
 
     
-    //
+    //This tests whether the method correctly returns combinations of food items. 
     @Test
     public void testFindCombinations() 
     {
         ArrayList<Food> foodList = new ArrayList<Food>();
         Food apple = new Food(10, "Apple", 25, 25, 25, 25, 100);
-        Food chocolate = new Food(14, "Chocolate", 25, 25, 25, 25, 1300);
         foodList.add(apple);
-        foodList.add(chocolate);
 
         Nutrition nutrition = new Nutrition(1400, 25, 25, 25, 25);
         Food[] currCombination = new Food[1];
@@ -366,7 +364,19 @@ public class ProjectTest {
         Inventory.findCombinations(combinations, currCombination, foodList, nutrition, 0, foodList.size() - 1, 0, 1);
 
         boolean correctCombinations = true;
-        //assertArrayEquals(goodCombination, actualCombination);
+
+        if (combinations.size() > 1)
+        {
+            correctCombinations = false;
+        }
+
+        else if (combinations.get(0)[0] != apple)
+        {
+            System.out.println(combinations.get(0)[0].getName());
+            correctCombinations = false;
+        }
+        
+        assertTrue("The method findCombinations returned incorrect combinations based on the inputs", correctCombinations);
     }
 
     @Test
