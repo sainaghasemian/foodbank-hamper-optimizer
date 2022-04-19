@@ -66,7 +66,7 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         
     }
     
-    //sets up buttons and interface
+    //This method sets up all the different buttons and interface for the GUI
     public void setupGUI(){
         
         instructions = new JLabel("Please enter the list of clients that are part of a single hamper.");
@@ -101,8 +101,10 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         this.add(submitPanel, BorderLayout.SOUTH);
     }
 
-    //takes user input string and takes each individual client, finds that client in the arraylist of clients stored in the database class and creates a new client using that
-    //The resulting client array is returned
+    //This method takes the user input string and takes each individual client
+    //then finds that client in the arraylist of clients stored in the database class.
+    //Then it creates a new client using the arraylist of clients from before.
+    //And then will return the new resulting client array.
     public Client[] createClientList(String clients){
         ArrayList<Client> newClientList = new ArrayList<Client>();
         Client[] newClientArray;
@@ -128,9 +130,11 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         return newClientArray;
     }
     
-    //Part of the GUI that detects button clicks and runs a process depending on the source
+    //This method is part of the GUI that detects button clicks and runs a process
+    //depending on the source.
     //First process is adding a hamper to list of hampers in the order
-    //Second process is processing the order
+    //Second process in this method is processing the order, and once the order has been processed
+    //it will send all the information into the "orderform.txt" file.
     public void actionPerformed(ActionEvent event){
         
         clients = clientsInput.getText();
@@ -213,7 +217,11 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
 
     public void mouseReleased(MouseEvent event){}  
     
-    //Uses enums to validate format and client type of the users input and returns a boolean value
+    //This method uses the enumerations to validate the format of user input
+    //and client type of the users input.
+    //This is what verifies if user input is true/false, if the user makes a spelling
+    //mistake or enters users on the same line, user will be prompted to re enter inputs.
+    //Then it returns a boolean value
     public boolean validateClientInput(String clients){
         StringTokenizer tokenizer = new StringTokenizer(clients, "\n");
         boolean inputValid = true;
@@ -234,7 +242,10 @@ public class RequestIO extends JFrame implements ActionListener, MouseListener{
         return inputValid;
     }
 
-    //Takes the orderform and creates the output file
+    //This method takes the data from actionPerformed, and takes the orderform and
+    //creates the output file.
+    //This method includes all extra information that is included in the order form
+    //such as Hamper number.
     public static void createRequestOutput(ArrayList<Food[]> foodList, String outputFile) throws FileNotFoundException 
     {
         PrintWriter outputWrite = new PrintWriter(new File(outputFile));
