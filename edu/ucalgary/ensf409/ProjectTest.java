@@ -409,7 +409,7 @@ public class ProjectTest {
         Food[] expectedFood = new Food[2];
         expectedFood[0] = new Food(10, "Burger", 25, 25, 25, 25, 1000);
         expectedFood[1] = new Food(20, "Pizza", 30, 20, 25, 25, 500);
-        int[] expectedShortageValue = {-500, 0, 25, 10};
+        int[] expectedShortageValue = {-500, -1, 25, -10};
         int[] actualShort = Inventory.calculateShortage(expectedFood, expectedNutrition);
         assertEquals("The expected shortage of the inventory did not match the expected result, ", expectedShortageValue, actualShort);
     }
