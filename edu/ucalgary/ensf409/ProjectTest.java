@@ -507,7 +507,7 @@ public class ProjectTest {
         boolean exceptionThrown = false;
         try {
             ArrayList<Food[]> foodList = new ArrayList<Food[]>();
-            RequestIO.createRequestOutput(foodList, "order");
+            RequestIO.createRequestOutput(foodList, "CREATE_REQUEST_OUTPUT_TEST");
         }
         catch (FileNotFoundException e) {
             exceptionThrown = true;
