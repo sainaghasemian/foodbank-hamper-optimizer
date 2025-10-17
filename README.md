@@ -1,4 +1,4 @@
-# w22_ensf409_group80_project
+# foodbank-hamper-optimizer
 This project asked our group to design an application which will calculate the most efficient combination of inventory which can be used to create a hamper for a foodbank. 
 For example, if a client needs food for three adult males and two children over 8, the application should be able to calculate the combination of items that will meet their nutritional needs for one week, with the least amount of surplus. 
 Furthermore, it should be possible to request multiple hampers of differing configurations as part of a single request. 
